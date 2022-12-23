@@ -5,13 +5,10 @@ Contact::Contact()
     return ;
 }
 
-Contact::Contact(std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret)
+Contact::Contact(std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret):
+_firstName(firstName), _lastName(lastName), _nickName(nickName), _phoneNumber(phoneNumber), _darkestSecret(darkestSecret)
 {
-    _firstName = firstName;
-    _lastName = lastName;
-    _nickName = nickName;
-    _phoneNumber = phoneNumber;
-    _darkestSecret = darkestSecret;
+    return ;
 }
 
 Contact::~Contact()
@@ -72,6 +69,7 @@ void Contact::setDarkestSecret(std::string darkestSecret)
 void Contact::createNewContact(void)
 {
     std::cin.clear();
+    this->clearContact();
     while (this->_firstName.empty())
     {
         std::cout << "Enter your first name" << std::endl;
@@ -110,15 +108,15 @@ void Contact::displayContactInfo(int index)
     if (this->_firstName.length() > 9)
         std::cout << std::right << std::setw(10) << this->_firstName.substr(0, 9) << ".|";
     else
-        std::cout << std::right << std::setw(10) << this->_firstName << "|";
+        std::cout << std::right << std::setw(10) << this->_firstName << " |";
     if (this->_lastName.length() > 9)
         std::cout << std::right << std::setw(10) << this->_lastName.substr(0, 9) << ".|";
     else
-        std::cout << std::right << std::setw(10) << this->_lastName << "|";
+        std::cout << std::right << std::setw(10) << this->_lastName << " |";
     if (this->_nickName.length() > 9)
-        std::cout << std::right << std::setw(10) << this->_nickName.substr(0, 9) << "|" << std::endl;
+        std::cout << std::right << std::setw(10) << this->_nickName.substr(0, 9) << ".|" << std::endl;
     else
-        std::cout << std::right << std::setw(10) << this->_nickName << std::endl;
+        std::cout << std::right << std::setw(10) << this->_nickName << " |" << std::endl;
 }
 
 void Contact::displaySingleContact(void)
@@ -128,6 +126,15 @@ void Contact::displaySingleContact(void)
     std::cout << this->_nickName << std::endl;
     std::cout << this->_phoneNumber << std::endl;
     std::cout << this->_darkestSecret << std::endl;
+}
+
+void Contact::clearContact(void)
+{
+    this->_firstName.clear();
+    this->_lastName.clear();
+    this->_nickName.clear();
+    this->_phoneNumber.clear();
+    this->_darkestSecret.clear();
 }
 
 bool Contact::isEmpty(void) const

@@ -24,6 +24,7 @@ class Contact
     void createNewContact(void);
     void displayContactInfo(int index);
     void displaySingleContact(void);
+    void clearContact(void);
     bool isEmpty(void) const;
     private:
     std::string _firstName;
