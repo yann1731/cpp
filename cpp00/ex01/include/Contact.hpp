@@ -22,7 +22,8 @@ class Contact
     void setPhoneNumber(std::string phoneNumber);
     void setDarkestSecret(std::string darkestSecret);
     void createNewContact(void);
-    void displayContactInfo(void);
+    void displayContactInfo(int index);
+    void displaySingleContact(void);
     bool isEmpty(void) const;
     private:
     std::string _firstName;

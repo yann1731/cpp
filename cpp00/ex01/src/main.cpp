@@ -3,17 +3,23 @@
 int main(void)
 {
     PhoneBook myPhoneBook;
-	std::string input;
+    
+    std::string input;
 	while (1)
 	{
+        std::cout << "Please enter a command: ";
 		std::cin >> input;
-		if (input.compare("ADD"))
+		if (input.compare("ADD") == 0)
+        {
+            std::cin.clear();
+            std::cin.ignore(50000, '\n');
 			myPhoneBook.addNewEntry();
-		else if (input.compare("SEARCH"))
-			myPhoneBook.displayContactList();
-		else if (input.compare("EXIT"))
+        }
+		else if (input.compare("SEARCH") == 0)
+			myPhoneBook.search();
+		else if (input.compare("EXIT") == 0)
 			exit(0);
 		else
-			std::cin.clear();
+			std::cout << "Not a valid command. Enter either ADD, SEARCH, EXIT" << std::endl;
 	}
 }

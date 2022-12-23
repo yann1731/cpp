@@ -71,6 +71,7 @@ void Contact::setDarkestSecret(std::string darkestSecret)
 
 void Contact::createNewContact(void)
 {
+    std::cin.clear();
     while (this->_firstName.empty())
     {
         std::cout << "Enter your first name" << std::endl;
@@ -103,21 +104,30 @@ void Contact::createNewContact(void)
 	}
 }
 
-void Contact::displayContactInfo(void)
+void Contact::displayContactInfo(int index)
 {
-    std::cout << std::right << std::setw(10) << (i + 1) << "|";
-		if (contact[i].firstName.length() > 9)
-			std::cout << std::right << std::setw(10) << contact[i].firstName.substr(0, 9) << ".|";
-		else
-			std::cout << std::right << std::setw(10) << contact[i].firstName << "|";
-		if (contact[i].lastName.length() > 9)
-			std::cout << std::right << std::setw(10) << contact[i].lastName.substr(0, 9) << ".|";
-		else
-			std::cout << std::right << std::setw(10) << contact[i].lastName << "|";
-		if (contact[i].nickName.length() > 9)
-			std::cout << std::right << std::setw(10) << contact[i].nickName.substr(0, 9) << "|" << std::endl;
-		else
-			std::cout << std::right << std::setw(10) << contact[i].nickName << std::endl;
+    std::cout << std::right << std::setw(10) << index + 1 << "|";
+    if (this->_firstName.length() > 9)
+        std::cout << std::right << std::setw(10) << this->_firstName.substr(0, 9) << ".|";
+    else
+        std::cout << std::right << std::setw(10) << this->_firstName << "|";
+    if (this->_lastName.length() > 9)
+        std::cout << std::right << std::setw(10) << this->_lastName.substr(0, 9) << ".|";
+    else
+        std::cout << std::right << std::setw(10) << this->_lastName << "|";
+    if (this->_nickName.length() > 9)
+        std::cout << std::right << std::setw(10) << this->_nickName.substr(0, 9) << "|" << std::endl;
+    else
+        std::cout << std::right << std::setw(10) << this->_nickName << std::endl;
+}
+
+void Contact::displaySingleContact(void)
+{
+    std::cout << this->_firstName << std::endl;
+    std::Cout << this->_lastName << std::endl;
+    std::cout << this->_nickName << std::endl;
+    std::cout << this->_phoneNumber << std::endl;
+    std::cout << this->_darkestSecret << std::endl;
 }
 
 bool Contact::isEmpty(void) const
