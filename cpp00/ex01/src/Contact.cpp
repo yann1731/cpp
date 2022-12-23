@@ -124,7 +124,7 @@ void Contact::displayContactInfo(int index)
 void Contact::displaySingleContact(void)
 {
     std::cout << this->_firstName << std::endl;
-    std::Cout << this->_lastName << std::endl;
+    std::cout << this->_lastName << std::endl;
     std::cout << this->_nickName << std::endl;
     std::cout << this->_phoneNumber << std::endl;
     std::cout << this->_darkestSecret << std::endl;

@@ -31,28 +31,28 @@ void PhoneBook::search(void)
     switch (index)
     {
         case 1:
-            displayContact();
+            contactList[index - 1].displaySingleContact();
             break;
         case 2:
-            displayContact();
+            contactList[index - 1].displaySingleContact();
             break;
         case 3:
-            displayContact(lameBook.contactList[2]);
+            contactList[index - 1].displaySingleContact();
             break;
         case 4:
-            displayContact(lameBook.contactList[3]);
+            contactList[index - 1].displaySingleContact();
             break;
         case 5:
-            displayContact(lameBook.contactList[4]);
+            contactList[index - 1].displaySingleContact();
             break;
         case 6:
-            displayContact(lameBook.contactList[5]);
+            contactList[index - 1].displaySingleContact();
             break;
         case 7:
-            displayContact(lameBook.contactList[6]);
+            contactList[index - 1].displaySingleContact();
             break;
         case 8:
-            displayContact(lameBook.contactList[7]);
+            contactList[index - 1].displaySingleContact();
             break;
         default:
             std::cin.clear();
