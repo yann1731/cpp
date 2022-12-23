@@ -49,7 +49,7 @@ void Contact::setFirstName(std::string firstName)
     _firstName = firstName;
 }
 
-void Contact::setLasttName(std::string lastName)
+void Contact::setLastName(std::string lastName)
 {
     _lastName = lastName;
 }
@@ -73,29 +73,51 @@ void Contact::createNewContact(void)
 {
     while (this->_firstName.empty())
     {
-        std::cout << "Enter the first name of the new contact: ";
-        std::cin >> this->_firstName;
+        std::cout << "Enter your first name" << std::endl;
+        std::getline(std::cin, this->_firstName);
+        std::cin.clear();
     }
     while (this->_lastName.empty())
     {
-        std::cout << "Enter the last name of the new contact: ";
-        std::cin >> this->_lastName;
+        std::cout << "Enter your last name" << std::endl;
+        std::getline(std::cin, this->_lastName);
+        std::cin.clear();
     }
     while (this->_nickName.empty())
     {
-        std::cout << "Enter the nickname of the new contact: ";
-        std::cin >> this->_nickName;
+        std::cout << "Enter your nickname" << std::endl;
+        std::getline(std::cin, this->_nickName);
+        std::cin.clear();
     }
     while (this->_phoneNumber.empty())
-    {
-        std::cout << "Enter the phone number of the new contact: ";
-        std::cin >> this->_phoneNumber;
-    }
+	{
+    	std::cout << "Enter your phone number" << std::endl;
+        std::getline(std::cin, this->_phoneNumber);
+    	std::cin.clear();
+	}
     while (this->_darkestSecret.empty())
-    {
-        std::cout << "Enter the darkest secret of the new contact: ";
-        std::cin >> this->_darkestSecret;
-    }
+	{
+    	std::cout << "Enter your darkest secret" << std::endl;
+		std::getline(std::cin, this->_darkestSecret);
+    	std::cin.clear();
+	}
+}
+
+void Contact::displayContactInfo(void)
+{
+    std::cout << std::right << std::setw(10) << (i + 1) << "|";
+		if (contact[i].firstName.length() > 9)
+			std::cout << std::right << std::setw(10) << contact[i].firstName.substr(0, 9) << ".|";
+		else
+			std::cout << std::right << std::setw(10) << contact[i].firstName << "|";
+		if (contact[i].lastName.length() > 9)
+			std::cout << std::right << std::setw(10) << contact[i].lastName.substr(0, 9) << ".|";
+		else
+			std::cout << std::right << std::setw(10) << contact[i].lastName << "|";
+		if (contact[i].nickName.length() > 9)
+			std::cout << std::right << std::setw(10) << contact[i].nickName.substr(0, 9) << "|" << std::endl;
+		else
+			std::cout << std::right << std::setw(10) << contact[i].nickName << std::endl;
 }
 
 bool Contact::isEmpty(void) const

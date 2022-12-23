@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <iomanip>
 
 
 // The contact fields are: first name, last name, nickname, phone number, and
@@ -15,11 +17,12 @@ class Contact
     std::string getPhoneNumber(void) const;
     std::string getDarkestSecret(void) const;
     void setFirstName(std::string firstName);
-    void setLasttName(std::string lastName);
+    void setLastName(std::string lastName);
     void setNickName(std::string nickName);
     void setPhoneNumber(std::string phoneNumber);
     void setDarkestSecret(std::string darkestSecret);
     void createNewContact(void);
+    void displayContactInfo(void);
     bool isEmpty(void) const;
     private:
     std::string _firstName;
