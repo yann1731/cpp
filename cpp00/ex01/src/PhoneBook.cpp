@@ -55,6 +55,7 @@ void PhoneBook::search(void)
             contactList[index - 1].displaySingleContact();
             break;
         default:
+            std::cout << "Bad index" << std::endl;
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             break;
