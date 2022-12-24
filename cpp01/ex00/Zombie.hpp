@@ -1,6 +1,7 @@
 #ifndef CPP_ZOMBIE_HPP
 #define CPP_ZOMBIE_HPP
-
+#include <string>
+#include <iostream>
 
 class Zombie {
 private:
