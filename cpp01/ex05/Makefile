@@ -1,4 +1,4 @@
-SRCS =	main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRCS =	main.cpp Harl.cpp
 
 OBJS =	${SRCS:.c=.o}
 
