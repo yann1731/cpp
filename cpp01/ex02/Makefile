@@ -6,7 +6,7 @@ FLAGS =	-Wall -Werror -Wextra
 
 STD =	-std=c++98
 
-NAME =	zombie
+NAME =	ref
 
 CC =	c++
 
