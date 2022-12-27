@@ -40,6 +40,13 @@ void Harl::complain (std::string level)
 	{
 		void (Harl::*adressComplaint) (void) = complaint[i];
 		if (level == levels[i])
-			(this->*adressComplaint)();
+		{
+			for (int j = i; j < 4; j++)
+			{
+				void (Harl::*adressComplaint) (void) = complaint[j];
+				(this->*adressComplaint) ();
+			}
+			break ;
+		}
 	}
 }
