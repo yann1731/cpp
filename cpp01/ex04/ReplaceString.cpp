@@ -14,4 +14,6 @@ ReplaceString::~ReplaceString()
 void ReplaceString::replace(void)
 {
 	_newFileName.append(".replace");
+	std::string bufferString;
+	std::ofstream stream(_newFileName);
 }
