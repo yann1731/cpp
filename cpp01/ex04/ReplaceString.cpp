@@ -15,5 +15,10 @@ void ReplaceString::replace(void)
 {
 	_newFileName.append(".replace");
 	std::string bufferString;
+	std::ifstream input(_fileName);
 	std::ofstream stream(_newFileName);
+	while (std::getline(input, bufferString, '\n'))
+	{
+		stream << bufferString;
+	}
 }
