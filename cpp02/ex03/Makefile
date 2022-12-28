@@ -1,4 +1,4 @@
-SRCS =	main.cpp Fixed.cpp
+SRCS =	main.cpp Fixed.cpp Point.cpp
 
 OBJS =	${SRCS:.c=.o}
 
@@ -6,7 +6,7 @@ FLAGS =	-Wall -Werror -Wextra
 
 STD =	-std=c++98
 
-NAME =	fixed
+NAME =	bsp
 
 CC =	c++
 
