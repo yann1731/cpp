@@ -14,13 +14,14 @@ public:
 	Fixed (const float n);
 	Fixed (const Fixed& fixed);
 	~Fixed (void);
+	void setValue(float value);
 	static Fixed& max(Fixed& fixedOne, Fixed& fixedTwo);
 	static Fixed& max(const Fixed& fixedOne, const Fixed& fixedTwo);
 	static Fixed& min(Fixed& fixedOne, Fixed& fixedTwo);
 	static Fixed& min(const Fixed& fixedOne, const Fixed& fixedTwo);
 	void setNumberValue (int n);
 	int getNumberValue (void);
-	void operator= (const Fixed& fixed);
+	Fixed &operator= (const Fixed& fixed);
 	bool operator> (const Fixed& fixed);
 	bool operator< (const Fixed& fixed);
 	bool operator>= (const Fixed& fixed);

@@ -28,5 +28,6 @@ float Point::getY(void) const
 
 Point &Point::operator=(const Point &point)
 {
-    return (Point(point.x.toFloat(), point.y.toFloat()));
+    (void)point;
+    return (*this);
 }

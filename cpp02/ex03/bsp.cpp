@@ -4,7 +4,7 @@ float getW1(Point const a, Point const b, Point const c, Point const p)
 {
     float w1;
 
-    w1 = a.getX() * (c.getY() - a.getY()) + (p.getY() - a.getY()) * (c.getX() - a.getX()) - p.getX() * (c.getY() - a.getY()) / (b.getY() - a.getY()) * (c.getX() - a.getX()) - (b.getX() - a.getX()) * (c.getY() - a.getY());
+    w1 = (a.getX() * (c.getY() - a.getY()) + (p.getY() - a.getY()) * (c.getX() - a.getX()) - p.getX() * (c.getY() - a.getY())) / ((b.getY() - a.getY()) * (c.getX() - a.getX()) - (b.getX() - a.getX()) * (c.getY() - a.getY()));
     return (w1);
 }
 
@@ -12,7 +12,8 @@ float getW2(Point const a, Point const b, Point const c, Point const p, float w1
 {
     float w2;
 
-    w2 = p.getY() - a.getY() - w1 * (b.getY() - a.getY()) / c.getY() - a.getY();
+    w2 = (p.getY() - a.getY() - w1 * (b.getY() - a.getY())) / (c.getY() - a.getY());
+    return (w2);
 }
 
 bool bsp(Point const a, Point const b, Point const c, Point const point)
