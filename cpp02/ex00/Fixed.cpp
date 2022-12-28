@@ -23,10 +23,9 @@ Fixed::Fixed(const Fixed &fixed)
     _value = fixed._value;
 }
 
-Fixed &Fixed::operator= (const Fixed &fixed)
+void Fixed::operator= (const Fixed &fixed)
 {
-    Fixed newFixed(fixed);
-    return (newFixed);
+    _value = fixed._value;
 }
 
 Fixed::~Fixed ()
