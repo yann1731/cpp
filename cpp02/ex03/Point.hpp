@@ -13,8 +13,8 @@ public:
     Point(const float x, const float y);
     Point(const Point &point);
     ~Point();
-    float getX(void);
-    float getY(void);
+    float getX(void) const;
+    float getY(void) const;
     Point &operator= (const Point &point);
 };
 

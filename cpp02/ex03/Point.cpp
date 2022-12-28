@@ -16,12 +16,12 @@ Point::~Point()
 {
 }
 
-float Point::getX(void)
+float Point::getX(void) const
 {
     return (x.toFloat());
 }
 
-float Point::getY(void)
+float Point::getY(void) const
 {
     return (y.toFloat());
 }
