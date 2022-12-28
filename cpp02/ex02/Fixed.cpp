@@ -1,73 +1,168 @@
 #include "Fixed.hpp"
 
-// class Fixed
-// {
-// private:
-//     int _value;
-//     static const int _fractional_bits = 8;
-// public:
-//     Fixed();
-//     Fixed(const int param);
-//     Fixed(const float param);
-//     Fixed(const Fixed &fixed);
-//     void operator=(const Fixed &fixed);
-//     ~Fixed();
-//     float toFloat(void) const;
-//     int toInt(void) const;
-//     int getRawBits(void) const;
-//     void setRawBits(int const raw);
-// };
-
-Fixed::Fixed(): _value(0)
+Fixed::Fixed ()
 {
-}
+	numberValue = 0;
+};
 
-Fixed::Fixed(const int param)
+Fixed::Fixed (const int n)
 {
-    _value = param << _fractional_bits;
-}
+	numberValue = (n << fractionalBits);
+};
 
-Fixed::Fixed(const float param)
+Fixed::Fixed (const float n)
 {
-    _value = param * (1 << _fractional_bits);
-}
+	numberValue = (n * (1 << fractionalBits));
+};
 
-Fixed::Fixed(const Fixed &fixed)
+Fixed::Fixed (const Fixed& fixed)
 {
-    _value = fixed._value;
-}
+	numberValue = fixed.numberValue;
+};
 
-void Fixed::operator= (const Fixed &fixed)
+Fixed::~Fixed (void)
 {
-    _value = fixed._value;
-}
+};
 
-Fixed::~Fixed ()
+Fixed& Fixed::max (Fixed& fixedOne, Fixed& fixedTwo)
 {
-}
+	if (fixedOne > fixedTwo)
+		return (fixedOne);
+	else
+		return (fixedTwo);
+};
 
-float Fixed::toFloat(void) const
+Fixed& Fixed::max (const Fixed& fixedOne, const Fixed& fixedTwo)
 {
-    return (float(_value) / float((1 << _fractional_bits)));
-}
+	if ((Fixed&) fixedOne > (Fixed&) fixedTwo)
+		return ((Fixed&) fixedOne);
+	else
+		return ((Fixed&) fixedTwo);
+};
 
-int Fixed::toInt(void) const
+Fixed& Fixed::min (Fixed& fixedOne, Fixed& fixedTwo)
 {
-    return (_value >> _fractional_bits);
-}
+	if (fixedOne < fixedTwo)
+		return (fixedOne);
+	else
+		return (fixedTwo);
+};
 
-int Fixed::getRawBits(void) const
+Fixed& Fixed::min (const Fixed& fixedOne, const Fixed& fixedTwo)
 {
-    return (_value);
-}
+	if ((Fixed&) fixedOne < (Fixed&) fixedTwo)
+		return ((Fixed&) fixedOne);
+	else
+		return ((Fixed&) fixedTwo);
+};
 
-void Fixed::setRawBits(int const raw)
+void Fixed::setNumberValue (int n)
 {
-    _value = raw;
-}
+	numberValue = n;
+};
 
-std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
+int	Fixed::getNumberValue (void)
 {
-    out << fixed.toFloat();
-    return (out);
-}
+	return (numberValue);
+};
+
+void Fixed::operator= (const Fixed& fixed)
+{
+	numberValue = fixed.numberValue;
+};
+
+std::ostream& operator<< (std::ostream& out, const Fixed& fixed)
+{
+	out << fixed.toFloat();
+	return (out);
+};
+
+bool Fixed::operator> (const Fixed& fixed)
+{
+	return (toFloat() > fixed.toFloat());
+};
+
+bool Fixed::operator< (const Fixed& fixed)
+{
+	return (toFloat() < fixed.toFloat());
+};
+
+bool Fixed::operator>= (const Fixed& fixed)
+{
+	return (toFloat() >= fixed.toFloat());
+};
+
+bool Fixed::operator<= (const Fixed& fixed)
+{
+	return (toFloat() <= fixed.toFloat());
+};
+
+Fixed Fixed::operator+ (const Fixed& fixed)
+{
+	Fixed returnFixed(toFloat() + fixed.toFloat());
+	return (returnFixed);
+};
+
+Fixed Fixed::operator- (const Fixed& fixed)
+{
+	Fixed returnFixed(toFloat() - fixed.toFloat());
+	return (returnFixed);
+};
+
+Fixed Fixed::operator* (const Fixed& fixed)
+{
+	Fixed returnFixed(toFloat() * fixed.toFloat());
+	return (returnFixed);
+};
+
+Fixed Fixed::operator/ (const Fixed& fixed)
+{
+	Fixed returnFixed(toFloat() / fixed.toFloat());
+	return (returnFixed);
+};
+
+bool Fixed::operator== (const Fixed& fixed)
+{
+	return (toFloat() == fixed.toFloat());
+};
+
+bool Fixed::operator!= (const Fixed& fixed)
+{
+	return (toFloat() != fixed.toFloat());
+};
+
+Fixed Fixed::operator++ ()
+{
+	numberValue++;
+	return (*this);
+};
+
+Fixed Fixed::operator++ (int)
+{
+	Fixed tmp(*this);
+	numberValue++;
+	return (tmp);
+};
+
+Fixed Fixed::operator-- ()
+{
+	numberValue--;
+	return (*this);
+};
+
+Fixed Fixed::operator-- (int)
+{
+	Fixed tmp(*this);
+	numberValue--;
+	return (tmp);
+};
+
+float Fixed::toFloat (void) const
+{
+	return ((float) numberValue / (float)(1 << Fixed::fractionalBits));
+};
+
+int Fixed::toInt (void) const
+{
+	return ((int) numberValue >> fractionalBits);
+};

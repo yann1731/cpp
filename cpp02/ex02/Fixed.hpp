@@ -6,21 +6,39 @@
 class Fixed
 {
 private:
-    int _value;
-    static const int _fractional_bits = 8;
+	int numberValue;
+	static const int fractionalBits = 8;
 public:
-    Fixed();
-    Fixed(const int param);
-    Fixed(const float param);
-    Fixed(const Fixed &fixed);
-    void operator=(const Fixed &fixed);
-    ~Fixed();
-    float toFloat(void) const;
-    int toInt(void) const;
-    int getRawBits(void) const;
-    void setRawBits(int const raw);
+	Fixed (void);
+	Fixed (const int n);
+	Fixed (const float n);
+	Fixed (const Fixed& fixed);
+	~Fixed (void);
+	static Fixed& max(Fixed& fixedOne, Fixed& fixedTwo);
+	static Fixed& max(const Fixed& fixedOne, const Fixed& fixedTwo);
+	static Fixed& min(Fixed& fixedOne, Fixed& fixedTwo);
+	static Fixed& min(const Fixed& fixedOne, const Fixed& fixedTwo);
+	void setNumberValue (int n);
+	int getNumberValue (void);
+	void operator= (const Fixed& fixed);
+	bool operator> (const Fixed& fixed);
+	bool operator< (const Fixed& fixed);
+	bool operator>= (const Fixed& fixed);
+	bool operator<= (const Fixed& fixed);
+	bool operator== (const Fixed& fixed);
+	bool operator!= (const Fixed& fixed);
+	Fixed operator+ (const Fixed& fixed);
+	Fixed operator- (const Fixed& fixed);
+	Fixed operator* (const Fixed& fixed);
+	Fixed operator/ (const Fixed& fixed);
+	Fixed operator++ ();
+	Fixed operator++ (int);
+	Fixed operator-- ();
+	Fixed operator-- (int);
+	float toFloat (void) const;
+	int toInt (void) const;
 };
 
-std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
+std::ostream& operator<< (std::ostream& out, const Fixed& fixed);
 
 #endif
