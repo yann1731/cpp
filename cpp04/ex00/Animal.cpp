@@ -1,18 +1,5 @@
 #include "Animal.hpp"
 
-// class Animal
-// {
-// protected:
-//     std::string type;
-// public:
-//     Animal();
-//     Animal(const std::string &type);
-//     Animal(const Animal &animal);
-//     ~Animal();
-//     Animal &operator=(const Animal &src);
-// };
-// std::ostream &operator<<(std::ostream &out, const Animal &src);
-
 Animal::Animal(): type("capybara")
 {
     std::cout << "Default animal constructor called" << std::endl;
@@ -37,6 +24,11 @@ Animal &Animal::operator=(const Animal &src)
 {
     this->type = src.type;
     return (*this);
+}
+
+void Animal::makeSound(void)
+{
+    std::cout << "What sound does a capybara make??" << std::endl;
 }
 
 std::string Animal::getType(void) const

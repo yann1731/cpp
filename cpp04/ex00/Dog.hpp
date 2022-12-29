@@ -4,7 +4,14 @@
 
 class Dog: public Animal
 {
-
+public:
+    Dog();
+    Dog(const std::string &type);
+    Dog(const Dog &dog);
+    ~Dog();
+    void makeSound(void);
+    std::string getType(void) const;
+    Dog &operator=(const Dog &src);
 };
 
 #endif
