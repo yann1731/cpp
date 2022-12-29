@@ -8,9 +8,9 @@ Dog::Dog(const Dog &dog): Animal(dog.type) {std::cout << "Copy dog constructor c
 
 Dog::~Dog() {std::cout << "Default dog destructor called" << std::endl;}
 
-void Dog::makeSound(void)
+void Dog::makeSound(void) const
 {
-	std::cout << "Woof woof" << std::endl;
+	std::cout << "fuck c++... I mean woof" << std::endl;
 }
 
 std::string Dog::getType(void) const

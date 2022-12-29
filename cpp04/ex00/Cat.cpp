@@ -8,7 +8,7 @@ Cat::Cat(const Cat &cat): Animal(cat.type) {std::cout << "Copy cat constructor c
 
 Cat::~Cat() {std::cout << "Default cat destructor called" << std::endl;}
 
-void Cat::makeSound(void)
+void Cat::makeSound(void) const
 {
 	std::cout << "Meow meow" << std::endl;
 }

@@ -26,7 +26,7 @@ Animal &Animal::operator=(const Animal &src)
     return (*this);
 }
 
-void Animal::makeSound(void)
+void Animal::makeSound(void) const
 {
     std::cout << "What sound does a capybara make??" << std::endl;
 }

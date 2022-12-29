@@ -9,7 +9,7 @@ public:
     Cat(const std::string &type);
     Cat(const Cat &cat);
     ~Cat();
-    void makeSound(void);
+    void makeSound(void) const;
     std::string getType(void) const;
     Cat &operator=(const Cat &src);
 };

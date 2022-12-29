@@ -9,7 +9,7 @@ public:
     Dog(const std::string &type);
     Dog(const Dog &dog);
     ~Dog();
-    void makeSound(void);
+    void makeSound(void) const;
     std::string getType(void) const;
     Dog &operator=(const Dog &src);
 };
