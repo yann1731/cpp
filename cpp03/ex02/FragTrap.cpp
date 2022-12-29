@@ -2,6 +2,7 @@
 
 FragTrap::FragTrap()
 {
+	std::cout << "Default fragtrap constructor called" << std::endl;
 	_name = "Marvin";
 	_hitPoints = 100;
 	_energyPoints = 100;
@@ -10,6 +11,7 @@ FragTrap::FragTrap()
 
 FragTrap::FragTrap(const std::string &name)
 {
+	std::cout << "Detailed fragtrap constructor called" << std::endl;
 	_name = name;
 	_hitPoints = 100;
 	_energyPoints = 100;
@@ -18,13 +20,14 @@ FragTrap::FragTrap(const std::string &name)
 
 FragTrap::FragTrap(const FragTrap &scav)
 {
+	std::cout << "Copy fragtrap constructor called" << std::endl;
 	_name = scav._name;
 	_hitPoints = scav._hitPoints;
 	_energyPoints = scav._energyPoints;
 	_attackDamage = scav._attackDamage;
 }
 
-FragTrap::~FragTrap() {}
+FragTrap::~FragTrap() {std::cout << "Default fragtrap destructor called" << std::endl;}
 
 void FragTrap::highFivesGuys(void)
 {

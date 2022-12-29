@@ -2,6 +2,7 @@
 
 ScavTrap::ScavTrap()
 {
+	std::cout << "Default scavtrap constructor called" << std::endl;
 	_name = "Marvin";
 	_hitPoints = 100;
 	_energyPoints = 50;
@@ -10,6 +11,7 @@ ScavTrap::ScavTrap()
 
 ScavTrap::ScavTrap(const std::string &name)
 {
+	std::cout << "Detailed scavtrap constructor called" << std::endl;
 	_name = name;
 	_hitPoints = 100;
 	_energyPoints = 50;
@@ -18,13 +20,14 @@ ScavTrap::ScavTrap(const std::string &name)
 
 ScavTrap::ScavTrap(const ScavTrap &scav)
 {
+	std::cout << "Copy scavtrap constructor called" << std::endl;
 	_name = scav._name;
 	_hitPoints = scav._hitPoints;
 	_energyPoints = scav._energyPoints;
 	_attackDamage = scav._attackDamage;
 }
 
-ScavTrap::~ScavTrap() {}
+ScavTrap::~ScavTrap() {std::cout << "Default scavtrap destructor called" << std::endl;}
 
 void ScavTrap::guardGate(void)
 {
