@@ -1,21 +1,35 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void)
 {
-	FragTrap marvin;
-	FragTrap clapTrap("Claptrap");
-	FragTrap evilClap("Evil claptrap");
-	FragTrap clapClone = clapTrap;
+	ClapTrap john("John");
+	ClapTrap jim("Jim");
+	ClapTrap joe("Joe");
+	ScavTrap jane("Jane");
+	FragTrap joseph("Joseph");
+	DiamondTrap daniel("Daniel");
 
-	std::cout << clapTrap.getName() << std::endl;
-	std::cout << clapClone.getName() << std::endl;
-	std::cout << evilClap.getName() << std::endl;
-
-	clapTrap.attack(evilClap.getName());
-	evilClap.takeDamage(10);
-	evilClap.beRepaired(10);
-
-	clapTrap.highFivesGuys();
-
+	john.attack("Marge");
+	john.attack("Bart");
+	john.attack("Homer");
+	john.takeDamage(5);
+	jim.takeDamage(9);
+	jim.takeDamage(10);
+	joe.beRepaired(10);
+	joe.takeDamage(19);
+	jane.attack("Lisa");
+	jane.takeDamage(99);
+	jane.beRepaired(50);
+	jane.guardGate();
+	joseph.attack("Maggie");
+	joseph.takeDamage(99);
+	joseph.beRepaired(50);
+	joseph.highFivesGuys();
+	daniel.attack("Ned");
+	daniel.takeDamage(5);
+	daniel.beRepaired(3);
+	daniel.guardGate();
+	daniel.highFivesGuys();
+	daniel.whoAmI();
 	return (0);
 }
