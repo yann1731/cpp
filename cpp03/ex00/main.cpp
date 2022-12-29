@@ -6,6 +6,8 @@ int main(void)
 	ClapTrap badClap("Bad claptrap");
 	ClapTrap marvin;
 
-	myPal.attack(badClap.)	
+	myPal.attack(badClap.getName());
+	badClap.takeDamage(0);
+	badClap.beRepaired(0);	
 	return (0);
 }
