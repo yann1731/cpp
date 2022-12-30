@@ -27,7 +27,10 @@ ScavTrap::ScavTrap(const ScavTrap &scav)
 	_attackDamage = scav._attackDamage;
 }
 
-ScavTrap::~ScavTrap() {std::cout << "Default scavtrap destructor called" << std::endl;}
+ScavTrap::~ScavTrap()
+{
+	std::cout << "Default scavtrap destructor called" << std::endl;
+}
 
 void ScavTrap::guardGate(void)
 {

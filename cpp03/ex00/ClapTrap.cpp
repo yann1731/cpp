@@ -1,12 +1,24 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap():_name("Marvin"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {}
+ClapTrap::ClapTrap():_name("Marvin"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << "Default claptrap constructor called" << std::endl;
+}
 
-ClapTrap::ClapTrap(std::string name): _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {}
+ClapTrap::ClapTrap(std::string name): _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << "Name claptrap constructor called" << std::endl;
+}
 
-ClapTrap::ClapTrap(const ClapTrap &claptrap): _name(claptrap._name), _hitPoints(claptrap._hitPoints), _energyPoints(claptrap._energyPoints), _attackDamage(claptrap._attackDamage) {}
+ClapTrap::ClapTrap(const ClapTrap &claptrap): _name(claptrap._name), _hitPoints(claptrap._hitPoints), _energyPoints(claptrap._energyPoints), _attackDamage(claptrap._attackDamage)
+{
+	std::cout << "Copy claptrap constructor called" << std::endl;
+}
 
-ClapTrap::~ClapTrap() {}
+ClapTrap::~ClapTrap()
+{
+	std::cout << "Default claptrap destructor called" << std::endl;
+}
 
 void ClapTrap::attack(const std::string &target)
 {
