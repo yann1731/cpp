@@ -10,7 +10,7 @@ WrongAnimal::~WrongAnimal() {}
 
 void WrongAnimal::makeSound(void) const
 {
-	std::cout << "hello I'm a sheep and I go quack quack" << std::endl;
+	std::cout << "hello I'm a sheep and I go orkwIFJWEFWkjfKJFDAKJHGEJFGdjksg" << std::endl;
 }
 
 std::string WrongAnimal::getType(void) const
