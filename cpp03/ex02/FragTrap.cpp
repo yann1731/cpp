@@ -27,7 +27,10 @@ FragTrap::FragTrap(const FragTrap &scav)
 	_attackDamage = scav._attackDamage;
 }
 
-FragTrap::~FragTrap() {std::cout << "Default fragtrap destructor called" << std::endl;}
+FragTrap::~FragTrap()
+{
+	std::cout << "Default fragtrap destructor called" << std::endl;
+}
 
 void FragTrap::highFivesGuys(void)
 {
