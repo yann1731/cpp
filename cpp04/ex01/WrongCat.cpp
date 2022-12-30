@@ -1,12 +1,24 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat(): WrongAnimal("tjwrejwef") {std::cout << "Default wronganimal constructor called" << std::endl;}
+WrongCat::WrongCat(): WrongAnimal("tjwrejwef") 
+{
+	std::cout << "Default wrongcat constructor called" << std::endl;
+}
 
-WrongCat::WrongCat(const std::string &type): WrongAnimal(type) {std::cout << "Custom wronganimal constructor called" << std::endl;}
+WrongCat::WrongCat(const std::string &type): WrongAnimal(type)
+{
+	std::cout << "Custom wrongcat constructor called" << std::endl;
+}
 
-WrongCat::WrongCat(const WrongCat &src): WrongAnimal(src.type) {std::cout << "Copy wronganimal constructor called" << std::endl;}
+WrongCat::WrongCat(const WrongCat &src): WrongAnimal(src.type)
+{
+	std::cout << "Copy wrongcat constructor called" << std::endl;
+}
 
-WrongCat::~WrongCat() {}
+WrongCat::~WrongCat()
+{
+	std::cout << "Default wrongcat destructor called" << std::endl;
+}
 
 void WrongCat::makeSound(void) const
 {

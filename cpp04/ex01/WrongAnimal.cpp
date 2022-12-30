@@ -1,12 +1,24 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(): type("tjwrejwef") {std::cout << "Default wronganimal constructor called" << std::endl;}
+WrongAnimal::WrongAnimal(): type("tjwrejwef")
+{
+	std::cout << "Default wronganimal constructor called" << std::endl;
+}
 
-WrongAnimal::WrongAnimal(const std::string &type): type(type) {std::cout << "Custom wronganimal constructor called" << std::endl;}
+WrongAnimal::WrongAnimal(const std::string &type): type(type)
+{
+	std::cout << "Custom wronganimal constructor called" << std::endl;
+}
 
-WrongAnimal::WrongAnimal(const WrongAnimal &src): type(src.type) {std::cout << "Copy wronganimal constructor called" << std::endl;}
+WrongAnimal::WrongAnimal(const WrongAnimal &src): type(src.type)
+{
+	std::cout << "Copy wronganimal constructor called" << std::endl;
+}
 
-WrongAnimal::~WrongAnimal() {}
+WrongAnimal::~WrongAnimal()
+{
+	return ;
+}
 
 void WrongAnimal::makeSound(void) const
 {

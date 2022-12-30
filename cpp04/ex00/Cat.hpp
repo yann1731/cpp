@@ -6,7 +6,6 @@ class Cat: public Animal
 {
 public:
     Cat();
-    Cat(const std::string &type);
     Cat(const Cat &cat);
     ~Cat();
     void makeSound(void) const;

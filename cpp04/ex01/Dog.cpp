@@ -1,21 +1,22 @@
 #include "Dog.hpp"
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog()
 {
-	brain = new Brain;
 	std::cout << "Default dog constructor called" << std::endl;
+	type = "dog";
+	brain = new Brain;
 }
 
 Dog::Dog(const Dog &dog): Animal(dog.type)
 {
-	brain = new Brain;
 	std::cout << "Copy dog constructor called" << std::endl;
+	brain = new Brain;
 }
 
 Dog::~Dog()
 {
-	delete brain;
 	std::cout << "Default dog destructor called" << std::endl;
+	delete brain;
 }
 
 void Dog::makeSound(void) const

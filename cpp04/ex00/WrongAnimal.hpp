@@ -8,7 +8,6 @@ protected:
 	std::string type;
 public:
 	WrongAnimal();
-	WrongAnimal(const std::string &type);
 	WrongAnimal(const WrongAnimal &src);
 	~WrongAnimal();
 	virtual void makeSound(void) const;

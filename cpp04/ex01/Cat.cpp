@@ -1,21 +1,22 @@
 #include "Cat.hpp"
 
-Cat::Cat(): Animal("Cat")
+Cat::Cat()
 {
-	brain = new Brain;
 	std::cout << "Default cat constructor called" << std::endl;
+	type = "cat";
+	brain = new Brain;
 }
 
 Cat::Cat(const Cat &cat): Animal(cat.type)
 {
-	brain = new Brain;
 	std::cout << "Copy cat constructor called" << std::endl;
+	brain = new Brain;
 }
 
 Cat::~Cat()
 {
-	delete brain;
 	std::cout << "Default cat destructor called" << std::endl;
+	delete brain;
 }
 
 void Cat::makeSound(void) const

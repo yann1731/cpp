@@ -1,10 +1,16 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat(): WrongAnimal("tjwrejwef") {std::cout << "Default wronganimal constructor called" << std::endl;}
+WrongCat::WrongCat(): WrongAnimal()
+{
+	type = "Dog";
+	std::cout << "Default wronganimal constructor called" << std::endl;
+}
 
-WrongCat::WrongCat(const std::string &type): WrongAnimal(type) {std::cout << "Custom wronganimal constructor called" << std::endl;}
-
-WrongCat::WrongCat(const WrongCat &src): WrongAnimal(src.type) {std::cout << "Copy wronganimal constructor called" << std::endl;}
+WrongCat::WrongCat(const WrongCat &src)
+{
+	type = src.type;
+	std::cout << "Copy wronganimal constructor called" << std::endl;
+}
 
 WrongCat::~WrongCat() {}
 
