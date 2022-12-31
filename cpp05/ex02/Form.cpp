@@ -64,11 +64,12 @@ void Form::beSigned(const Bureaucrat &src)
 {
     if (isSigned == true)
     {
-        throw ("Fuck you this is already signed");
+        std::cerr << "This form is already signed" << std::endl;
+        return ;
     }
     else if (src.getGrade() > gradeSign || src.getGrade() > gradeExec)
     {
-        throw Form::GradeTooLowException();
+        std::cerr << src << " could not sign because grade is too low" << std::endl;
     }
     else
     isSigned = true;
@@ -94,12 +95,6 @@ const char *Form::FormNotSigned::what() const throw()
 {
     return ("Exception: Form is not signed!");
 }
-
-// void Form::order66(const Bureaucrat &executor) const
-// {
-// 	std::cout << name << " has been pardoned by president Zaphod Beeblebrox." << std::endl;
-// 	executor.executeForm(*this); 
-// }
 
 std::ostream &operator<<(std::ostream &out, const Form &src)
 {
