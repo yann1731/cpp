@@ -21,7 +21,15 @@ public:
     bool getSignStatus(void) const;
     int getGradeSign(void) const;
     int getGradeExec(void) const;
+    class GradeTooLowException: std::exception
+    {
+        const char *what() throw();
+    };
+    class GradeTooHighException: std::exception
+    {
+        const char *what() throw();
+    };
 };
-std::ostream &operator<<(const std::ostream &out, const Form &src);
+std::ostream &operator<<(std::ostream &out, const Form &src);
 
 #endif
