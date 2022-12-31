@@ -39,6 +39,7 @@ void Form::execute(const Bureaucrat &executor)
         order66(executor);
 }
 
+
 std::string Form::getName(void) const
 {
     return name;
@@ -79,20 +80,26 @@ Form &Form::operator=(const Form &src)
     return *this;
 }
 
-const char *Form::GradeTooLowException::what() throw()
+const char *Form::GradeTooLowException::what() const throw()
 {
     return ("Exception: Grade too low!");
 }
 
-const char *Form::GradeTooHighException::what() throw()
+const char *Form::GradeTooHighException::what() const throw()
 {
     return ("Exception: Grade too high!");
 }
 
-const char *Form::FormNotSigned::what() throw()
+const char *Form::FormNotSigned::what() const throw()
 {
     return ("Exception: Form is not signed!");
 }
+
+// void Form::order66(const Bureaucrat &executor) const
+// {
+// 	std::cout << name << " has been pardoned by president Zaphod Beeblebrox." << std::endl;
+// 	executor.executeForm(*this); 
+// }
 
 std::ostream &operator<<(std::ostream &out, const Form &src)
 {
