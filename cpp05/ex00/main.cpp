@@ -7,6 +7,11 @@ int main(void)
         Bureaucrat randomBureaucrat;
         Bureaucrat marvin("Marvin the miserable", 34);
         Bureaucrat numberOne("Number one", 1);
+        Bureaucrat b = marvin;
+        std::cout << b << std::endl;
+        b.promote();
+        std::cout << b.getGrade() << std::endl;
+        std::cout << marvin.getGrade() << std::endl;
         std::cout << marvin << std::endl;
         std::cout << randomBureaucrat << std::endl;
         std::cout << numberOne << std::endl;
