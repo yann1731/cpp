@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(): name("Random Form"), isSigned(false), gradeSign(1), gradeExec(1)
 {
