@@ -50,6 +50,11 @@ int Bureaucrat::getGrade(void) const
 	return grade;
 }
 
+void Bureaucrat::executeForm(const Form &form) const
+{
+	std::cout << this->name << " executed " << form.getName() << std::endl;
+}
+
 void Bureaucrat::promote(void)
 {
 	grade--;

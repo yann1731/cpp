@@ -17,6 +17,7 @@ public:
 	Bureaucrat &operator=(const Bureaucrat &src);
 	std::string getName(void) const;
 	int getGrade(void) const;
+	void executeForm(const Form &form) const;
 	class GradeTooHighException: public std::exception
 	{
 		const char *what() const throw();

@@ -11,6 +11,7 @@ public:
 	ShrubberyCreationForm(const std::string &target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &src);
 	~ShrubberyCreationForm();
+	void order66(const Bureaucrat &executor) const;
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &src);
 };
 

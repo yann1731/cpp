@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
 // • ShrubberyCreationForm: Required grades: sign 145, exec 137
 // Create a file <target>_shrubbery in the working directory, and writes ASCII trees inside it.
 
@@ -21,6 +22,12 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src): 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 	std::cout << "Default shrubberycreationform destructor called" << std::endl;
+}
+
+void ShrubberyCreationForm::order66(const Bureaucrat &executor) const
+{
+	std::cout << target << " has planted shrubberies" << std::endl;
+	executor.executeForm(*this);
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src)

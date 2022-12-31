@@ -1,36 +1,31 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void)
 {
     try
     {
-        // Bureaucrat randomBureaucrat;
-        // Bureaucrat marvin("Marvin the miserable", 34);
-        // Bureaucrat numberOne("Number one", 1);
-        // Bureaucrat b = marvin;
-        Form form("Robotomy form", 30, 30);
-        Form form2 = form;
+        Bureaucrat chadMarvin("Chad Marvin the first", 1);
+        Bureaucrat bottomFeeder("Cletus Bottomfeeder", 150);
+        // Bureaucrat whatthefuck("self explanatory", -1);
+    
+        PresidentialPardonForm form("Ford prefect");
+        ShrubberyCreationForm shrub("shrub");
+        RobotomyRequestForm arthur("Arthur Dent");
 
-        std::cout << form2;
-        // std::cout << b << std::endl;
-        // b.promote();
-        // std::cout << b.getGrade() << std::endl;
-        // std::cout << marvin.getGrade() << std::endl;
-        // std::cout << marvin << std::endl;
-        // std::cout << randomBureaucrat << std::endl;
-        // std::cout << numberOne << std::endl;
-        //numberOne.promote();
-        // randomBureaucrat.promote();
-        // std::cout << randomBureaucrat << std::endl;
-        // randomBureaucrat.demote();
-        // randomBureaucrat.demote();
+        form.beSigned(chadMarvin);
+        form.execute(chadMarvin);
+
+        shrub.beSigned(chadMarvin);
+        shrub.execute(bottomFeeder);
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
     
-
     return 0;
 }

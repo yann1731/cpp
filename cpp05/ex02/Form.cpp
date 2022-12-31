@@ -29,6 +29,16 @@ Form::~Form()
     std::cout << "Default form destructor called" << std::endl;
 }
 
+void Form::execute(const Bureaucrat &executor)
+{
+    if (isSigned == false)
+        throw Form::FormNotSigned();
+    else if (executor.getGrade() > gradeExec)
+        throw Form::GradeTooLowException();
+    else
+        order66(executor);
+}
+
 std::string Form::getName(void) const
 {
     return name;
@@ -53,13 +63,11 @@ void Form::beSigned(const Bureaucrat &src)
 {
     if (isSigned == true)
     {
-        std::cout << "Wtf this is already signed" << std::endl;
-        return ;
+        throw ("Fuck you this is already signed");
     }
     else if (src.getGrade() > gradeSign || src.getGrade() > gradeExec)
     {
-        std::cout << "You're too noob to sign this. Get out plz" << std::endl;
-        return ;
+        throw Form::GradeTooLowException();
     }
     else
     isSigned = true;
@@ -79,6 +87,11 @@ const char *Form::GradeTooLowException::what() throw()
 const char *Form::GradeTooHighException::what() throw()
 {
     return ("Exception: Grade too high!");
+}
+
+const char *Form::FormNotSigned::what() throw()
+{
+    return ("Exception: Form is not signed!");
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &src)
