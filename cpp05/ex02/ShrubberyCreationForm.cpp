@@ -26,7 +26,16 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::order66(const Bureaucrat &executor) const
 {
-	std::cout << target << " has planted shrubberies" << std::endl;
+	std::string newTarget;
+	newTarget = target;
+	newTarget.append("_shrubbery");
+	std::ofstream file(newTarget);
+
+	file << "" << std::endl;
+	file << "" << std::endl;
+	file << "" << std::endl;
+	file << "" << std::endl;
+	file << "" << std::endl;
 	executor.executeForm(*this);
 }
 
