@@ -18,20 +18,17 @@ public:
 	int getGrade(void) const;
 	class GradeTooHighException: public std::exception
 	{
-		const char *what() throw()
-		{
-			return "Exception: Grade too high!";
-		}
+		const char *what() const throw();
 	};
 	class GradeTooLowException: public std::exception
 	{
-		const char *what() throw()
-		{
-			return "Exception: Grade too low!";
-		}
+		const char *what() const throw();
 	};
 	void promote(void);
 	void demote(void);
 };
+
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &src);
+
 
 #endif
