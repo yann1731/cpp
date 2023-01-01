@@ -80,7 +80,7 @@ void Bureaucrat::signForm(Form &src) const
 	if (src.getSignStatus() == true)
 		std::cout << this << " has signed form " << src.getName() << std::endl;
 	else
-		std::cout << this << " could not sign form " << src.getName() << std::endl; 	
+		std::cout << this << " could not sign form " << src.getName() << " because grade is insufficient" << std::endl; 	
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &src)
