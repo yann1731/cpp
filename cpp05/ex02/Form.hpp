@@ -15,7 +15,7 @@ public:
     Form(const std::string &name, const int &gradeSign, const int &gradeExec);
     Form(const Form &src);
     ~Form();
-    void beSigned(const Bureaucrat &bureaucrat);
+    virtual void beSigned(const Bureaucrat &bureaucrat) = 0;
     Form &operator=(const Form &src);
     std::string getName(void) const;
     bool getSignStatus(void) const;
