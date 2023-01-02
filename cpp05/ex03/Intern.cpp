@@ -20,27 +20,6 @@ Intern::~Intern()
 	std::cout << "Default Intern destructor called" << std::endl;
 }
 
-// void (Harl::*complaint[]) (void) =
-// 	{
-// 		&Harl::debug,
-// 		&Harl::info,
-// 		&Harl::warning,
-// 		&Harl::error
-// 	};
-// 	std::string levels[] =
-// 	{
-// 		"debug",
-// 		"info",
-// 		"warning",
-// 		"error"
-// 	};
-// 	for (int i = 0; i < 4; i++)
-// 	{
-// 		void (Harl::*adressComplaint) (void) = complaint[i];
-// 		if (level == levels[i])
-// 			(this->*adressComplaint)();
-// 	}
-
 Form *Intern::makeForm(const std::string form, const std::string target)
 {
 	std::string funcs[] = {"shrubbery request", "robotomy request", "presidential pardon request"};
