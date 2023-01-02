@@ -29,13 +29,14 @@ void ShrubberyCreationForm::order66(const Bureaucrat &executor) const
 	std::string newTarget;
 	newTarget = target;
 	newTarget.append("_shrubbery");
-	std::ofstream file(newTarget);
-
-	file << "" << std::endl;
-	file << "" << std::endl;
-	file << "" << std::endl;
-	file << "" << std::endl;
-	file << "" << std::endl;
+	std::ofstream file(newTarget.c_str());
+	file << "     *        *         *      " << std::endl;
+	file << "    ***      ***       ***     " << std::endl;
+	file << "   *****    *****     *****    " << std::endl;
+	file << "  *******  *******   *******   " << std::endl;
+	file << "     *        *         *      " << std::endl;
+	file << "     *        *         *      " << std::endl;
+	file << "     *        *         *      " << std::endl;
 	executor.executeForm(*this);
 }
 
