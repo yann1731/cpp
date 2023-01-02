@@ -3,6 +3,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
@@ -11,12 +12,16 @@ int main(void)
         Bureaucrat chadMarvin("Chad Marvin the first", 1);
         Bureaucrat bottomFeeder("Cletus Bottomfeeder", 150);
     
-        PresidentialPardonForm form("Ford prefect");
+        Intern henchmanno1;
+
+        Form *form;
+        form = henchmanno1.makeForm("shrubbery request", "file");
+        PresidentialPardonForm pardon("Ford prefect");
         ShrubberyCreationForm shrub("shrub");
         RobotomyRequestForm arthur("Arthur Dent");
 
-        form.beSigned(chadMarvin);
-        form.execute(chadMarvin);
+        form->beSigned(chadMarvin);
+        form->execute(chadMarvin);
 
         shrub.beSigned(chadMarvin);
         shrub.execute(chadMarvin);
