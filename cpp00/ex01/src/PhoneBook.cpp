@@ -25,6 +25,8 @@ void PhoneBook::displayContactList(void)
 void PhoneBook::search(void)
 {
     int index;
+    if (this->_index == 0)
+        return ;
     this->displayContactList();
     std::cout << "Enter the index" << std::endl;
     std::cin >> index;
