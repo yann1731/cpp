@@ -32,6 +32,6 @@ void ShrubberyCreationForm::order66(const Bureaucrat &executor) const
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src)
 {
-	*this = src;
+	this->target = src.target;
 	return *this;
 }

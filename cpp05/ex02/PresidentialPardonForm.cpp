@@ -32,6 +32,6 @@ void PresidentialPardonForm::order66(const Bureaucrat &executor) const
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &src)
 {
-	*this = src;
+	this->target = src.target;
 	return *this;
 }

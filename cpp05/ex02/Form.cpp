@@ -77,7 +77,7 @@ void Form::beSigned(const Bureaucrat &src)
 
 Form &Form::operator=(const Form &src)
 {
-    *this = src;
+    this->isSigned = src.getSignStatus();
     return *this;
 }
 

@@ -32,10 +32,6 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
 {
 	grade = src.grade;
-	if (grade > 150)
-		throw GradeTooLowException();
-	if (grade <= 0)
-		throw GradeTooHighException();
 	return *this;
 }
 

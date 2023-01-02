@@ -32,6 +32,6 @@ void RobotomyRequestForm::order66(const Bureaucrat &executor) const
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
 {
-	*this = src;
+	this->target = src.target;
 	return *this;
 }
