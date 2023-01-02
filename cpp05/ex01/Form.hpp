@@ -23,11 +23,11 @@ public:
     int getGradeExec(void) const;
     class GradeTooLowException: std::exception
     {
-        const char *what() throw();
+        const char *what() const throw();
     };
     class GradeTooHighException: std::exception
     {
-        const char *what() throw();
+        const char *what() const throw();
     };
 };
 std::ostream &operator<<(std::ostream &out, const Form &src);
