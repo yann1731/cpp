@@ -10,7 +10,6 @@ int main(void)
     {
         Bureaucrat chadMarvin("Chad Marvin the first", 1);
         Bureaucrat bottomFeeder("Cletus Bottomfeeder", 150);
-        // Bureaucrat whatthefuck("self explanatory", -1);
     
         PresidentialPardonForm form("Ford prefect");
         ShrubberyCreationForm shrub("shrub");
@@ -20,7 +19,10 @@ int main(void)
         form.execute(chadMarvin);
 
         shrub.beSigned(chadMarvin);
-        shrub.execute(bottomFeeder);
+        shrub.execute(chadMarvin);
+
+        arthur.beSigned(chadMarvin);
+        arthur.execute(chadMarvin);
     }
     catch(const std::exception& e)
     {

@@ -1,5 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
+#include <cstdlib>
 // • RobotomyRequestForm: Required grades: sign 72, exec 45
 // Makes some drilling noises. Then, informs that <target> has been robotomized successfully 50% of the time. Otherwise, informs that the robotomy failed.
 
@@ -26,8 +27,15 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::order66(const Bureaucrat &executor) const
 {
-	std::cout << target << " *zzzzzzzzzztttt*. You have been succesfully robotomized. Goodbye!" << std::endl;
-	executor.executeForm(*this);
+	srand(time(NULL));
+	int res;
+	res = rand();
+	res = res % 2;
+	if (res == 0)
+		std::cout << "*zzzzzzzzzztttt* " << target << " has been succesfully robotomized. Goodbye!" << std::endl;
+	else
+		std::cout << "*zzzzzzzzzztttt* " << target << "'s robotomization failed. Oh no" << std::endl;
+	executor.executeForm(*this); 
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
