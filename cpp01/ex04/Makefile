@@ -14,7 +14,7 @@ CC =	c++
 			${CC} ${STD} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			@${CC} ${STD} ${CFLAGS} ${OBJS} -o ${NAME}
+			@${CC} ${STD} ${FLAGS} ${OBJS} -o ${NAME}
 
 all:		${NAME}
 
