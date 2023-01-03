@@ -71,8 +71,20 @@ bool Convert::checkChar(void)
 bool Convert::checkInt(void)
 {
 	const char *ptr = literal.c_str();
+	bool minus = false;
+	if (ptr[0] == '-')
+	{
+		if (!isdigit(ptr[1]))
+			return false;
+		minus = true;
+	}
 	for (int i = 0; ptr[i]; i++)
 	{
+		if (ptr[i] == '-' && minus == true)
+		{
+			i++;
+			minus = false;
+		}
 		if (!isdigit(ptr[i]))
 			return false;
 	}
@@ -84,10 +96,26 @@ bool Convert::checkFloat(void)
 	const char *ptr = literal.c_str();
 	int dot = 0;
 	bool trigger = false;
+	bool minus = false;
 	if (literal.length() <= 1)
 		return false;
+	if (ptr[0] == '-')
+	{
+		if (!isdigit(ptr[1]) && ptr[1] != '.')
+			return false;
+		minus = true;
+	}
+	if (ptr[0] == '.' && ptr[1] == 'f')
+		return false;
+	if (ptr[0] == '-' && !isdigit(ptr[1]))
+		return (false);
 	for (int i = 0; ptr[i]; i++)
 	{
+		if (ptr[i] == '-' && minus == true)
+		{
+			i++;
+			minus = false;
+		}
 		if (ptr[i] == '.')
 			dot++;
 		if ((!isdigit(ptr[i]) && ptr[i] != '.') && trigger == false)
@@ -115,10 +143,22 @@ bool Convert::checkDouble(void)
 	const char *ptr = literal.c_str();
 	bool status = false;
 	int dot = 0;
+	bool minus = false;
 	if (literal.length() <= 1)
 		return false;
+	if (ptr[0] == '-')
+	{
+		if (!isdigit(ptr[1]) && ptr[1] != '.')
+			return false;
+		minus = true;
+	}
 	for (int i = 0; ptr[i]; i++)
 	{
+		if (ptr[i] == '-' && minus == true)
+		{
+			i++;
+			minus = false;
+		}
 		if (ptr[i] == '.')
 			dot++;
 		if (dot > 1)
