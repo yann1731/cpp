@@ -4,6 +4,7 @@
 #include <cmath>
 #include <string>
 #include <cstdlib>
+#include <exception>
 
 class Convert
 {
@@ -14,6 +15,16 @@ private:
     float floatType;
     double doubleType;
     int type;
+    bool pseudoLiteral;
+    void findType(void);
+    bool checkChar(void);
+    bool checkInt(void);
+    bool checkFloat(void);
+    bool checkDouble(void);
+    void doConversion(void);
+    void doPrint(void);
+    void checkForPseudoLiteral(void);
+    void handlePseudoLiteral(void);
 public:
     Convert();
     Convert(const std::string &literal);
@@ -21,11 +32,14 @@ public:
     ~Convert();
     Convert &operator=(const Convert &src);
     void convertLiteral(void);
-    void findType(void);
-    bool checkChar(void);
-    bool checkInt(void);
-    bool checkFloat(void);
-    bool checkDouble(void);
+    class BadInput: public std::exception
+    {
+        const char *what() const throw();
+    };
+    class ThisIsVeryWrong: public std::exception
+    {
+        const char *what() const throw();
+    };
 };
 
 #endif

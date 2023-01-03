@@ -1,26 +1,14 @@
 #include "Convert.hpp"
 
-// class Convert
-// {
-// private:
-//     std::string literal;
-// public:
-//     Convert();
-//     Convert(const std::string &literal);
-//     Convert(const Convert &src);
-//     Convert();
-//     Convert &operator=(const Convert &src);
-// };
-
 Convert::Convert()
 {
 }
 
-Convert::Convert(const std::string &literal): literal(literal), charType(0), intType(0), floatType(0), doubleType(0), type(0)
+Convert::Convert(const std::string &literal): literal(literal), charType(0), intType(0), floatType(0), doubleType(0), type(0), pseudoLiteral(false)
 {
 }
 
-Convert::Convert(const Convert &src): literal(src.literal), charType(0), intType(0), floatType(0), doubleType(0), type(0)
+Convert::Convert(const Convert &src): literal(src.literal), charType(src.charType), intType(src.intType), floatType(src.floatType), doubleType(src.doubleType), type(src.type), pseudoLiteral(src.pseudoLiteral)
 {
 }
 
@@ -40,22 +28,41 @@ Convert &Convert::operator=(const Convert &src)
 
 void Convert::convertLiteral(void)
 {
-	
+	findType();
+	switch (type)
+	{
+		case (1):
+			std::cout << "Input is char" << std::endl;
+			break;
+		case (2):
+			std::cout << "Input is int" << std::endl;
+			break;
+		case (3):
+			std::cout << "Input is float" << std::endl;
+			break;
+		case (4): 
+			std::cout << "Input is double" << std::endl;
+			break;
+		default:
+			std::cerr << "Input is invalid" << std::endl;
+			break;
+	}
+
 }
 
 void Convert::findType(void)
 {
-	if (checkChar() == true)
-		type = 1;
-	else if (checkInt() == true)
-		type = 2;
-	else if (checkFloat() == true)
-		type = 3;
-	else if(checkDouble() == true)
-		type = 4;
+	checkForPseudoLiteral();
+	if (type == 0 && pseudoLiteral == false)
+	{
+		throw BadInput();
+	}
+	else if (pseudoLiteral == true)
+	{
+		handlePseudoLiteral();
+	}
 	else
-		type = 0;
-	std::cout << type << std::endl;
+		doConversion()
 }
 
 bool Convert::checkChar(void)
@@ -169,4 +176,50 @@ bool Convert::checkDouble(void)
 			return false;
 	}
 	return status;
+}
+
+void Convert::doConversion(void)
+{
+	switch(type)
+	{
+		case(1):
+			charType = literal[0];
+			break;
+		case(2):
+			intType = std::stoi(literal.c_str());
+			break;
+		case(3):
+			floatType = std::stof(literal.c_str());
+			break;
+		case(4):
+			doubleType = std::stod(literal.c_str());
+			break;
+		default:
+			throw ThisIsVeryWrong();
+	}
+}
+
+void Convert::doPrint(void)
+{
+
+}
+
+void Convert::checkForPseudoLiteral(void)
+{
+
+}
+
+void Convert::handlePseudoLiteral(void)
+{
+
+}
+
+const char *Convert::BadInput::what() const throw()
+{
+	return "Invalid input. Need char, int, float or double";
+}
+
+const char *Convert::ThisIsVeryWrong::what() const throw()
+{
+	return "Something has gone wrong on a very fundamental level";
 }

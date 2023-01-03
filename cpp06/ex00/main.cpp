@@ -9,6 +9,6 @@ int main(int argc, char *argv[])
     else
     {
         Convert convert(argv[1]);
-        convert.findType();
+        convert.convertLiteral();
     }
 }
