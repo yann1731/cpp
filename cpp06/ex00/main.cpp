@@ -8,6 +8,10 @@ int main(int argc, char *argv[])
     }
     else
     {
-
+        (void) argv;
+        char a = 'A';
+        std::cout << (int) a << std::endl;
+         std::cout << (float) a << std::endl;
+          std::cout << (double) a << std::endl;
     }
 }
