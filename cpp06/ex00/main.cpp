@@ -1,5 +1,8 @@
 #include "Convert.hpp"
 
+//flow convertLiteral -> findType -> checkForPseudoLiteral  |-> doConversion -> doPrint
+//                                                          |-> handlepseudoliteral -> print if input is a valid pseudoliteral
+//                                                          |-> if not a pseudoliteral and wrong input throw error
 int main(int argc, char *argv[])
 {
     if (argc != 2)

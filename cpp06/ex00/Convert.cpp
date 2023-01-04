@@ -29,40 +29,17 @@ Convert &Convert::operator=(const Convert &src)
 void Convert::convertLiteral(void)
 {
 	findType();
-	switch (type)
-	{
-		case (1):
-			std::cout << "Input is char" << std::endl;
-			break;
-		case (2):
-			std::cout << "Input is int" << std::endl;
-			break;
-		case (3):
-			std::cout << "Input is float" << std::endl;
-			break;
-		case (4): 
-			std::cout << "Input is double" << std::endl;
-			break;
-		default:
-			std::cerr << "Input is invalid" << std::endl;
-			break;
-	}
-
 }
 
 void Convert::findType(void)
 {
 	checkForPseudoLiteral();
 	if (type == 0 && pseudoLiteral == false)
-	{
 		throw BadInput();
-	}
 	else if (pseudoLiteral == true)
-	{
 		handlePseudoLiteral();
-	}
 	else
-		doConversion()
+		doConversion();
 }
 
 bool Convert::checkChar(void)
@@ -201,17 +178,40 @@ void Convert::doConversion(void)
 
 void Convert::doPrint(void)
 {
-
+	std::cout << "prout" << std::endl;
 }
 
 void Convert::checkForPseudoLiteral(void)
 {
-
+	if (literal.compare("nan") || literal.compare("nanf") || literal.compare("inf")\
+	||	literal.compare("inff") || literal.compare("-inf") || literal.compare("-inff"))
+		pseudoLiteral = true;
 }
 
 void Convert::handlePseudoLiteral(void)
 {
-
+	std::cout << "Char: Impossible" << std::endl;
+	std::cout << "Int: Impossible" << std::endl;
+	if (literal == "nanf" || literal == "inff" || literal == "-inff")
+	{
+		std::cout << "Float: " << literal << std::endl;
+		if (literal == "nanf")
+			std::cout << "Double: " << "nan" << std::endl;
+		else if (literal == "inff")
+			std::cout << "Double: " << "inf" << std::endl;
+		else
+			std::cout << "Double: " << "-inf" << std::endl;
+	}
+	else
+	{
+		if (literal == "nan")
+			std::cout << "Float: " << "nanf" << std::endl;
+		else if (literal == "inf")
+			std::cout << "Float: " << "inff" << std::endl;
+		else
+			std::cout << "Float: " << "-inff" << std::endl;
+		std::cout << "Double: " << literal << std::endl;
+	}
 }
 
 const char *Convert::BadInput::what() const throw()
