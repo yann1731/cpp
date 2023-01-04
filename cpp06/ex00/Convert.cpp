@@ -28,18 +28,39 @@ Convert &Convert::operator=(const Convert &src)
 
 void Convert::convertLiteral(void)
 {
-	findType();
+	try
+	{
+		findType();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 }
 
 void Convert::findType(void)
 {
 	checkForPseudoLiteral();
+	if (checkChar())
+		type = 1;
+	else if (checkInt())
+		type = 2;
+	else if (checkFloat())
+		type = 3;
+	else if (checkDouble())
+		type = 4;
+	else
+		type = 0;
 	if (type == 0 && pseudoLiteral == false)
 		throw BadInput();
 	else if (pseudoLiteral == true)
 		handlePseudoLiteral();
 	else
+	{
 		doConversion();
+		doPrint();
+	}
 }
 
 bool Convert::checkChar(void)
@@ -178,13 +199,72 @@ void Convert::doConversion(void)
 
 void Convert::doPrint(void)
 {
-	std::cout << "prout" << std::endl;
+	if (type == 1)
+	{
+		intType = static_cast<int>(charType);
+		floatType = static_cast<float>(charType);
+		doubleType = static_cast<double>(charType);
+		if (!isprint(charType - 48))
+			std::cout << "Not a printable character" << std::endl;
+		else if ((charType - 48) < 255)
+			std::cout << "Char: " << charType << std::endl;
+		else
+			std::cout << "Char: Invalid" << std::endl;
+		std::cout << "Int: " << intType << std::endl;
+		std::cout << "Float: " << floatType << ".0f" << std::endl;
+		std::cout << "Double: " << doubleType << ".0" << std::endl;
+	}
+	if (type == 2)
+	{
+		charType = static_cast<char>(intType);
+		floatType = static_cast<float>(intType);
+		doubleType = static_cast<double>(intType);
+		if (!isprint(charType - 48))
+			std::cout << "Not a printable character" << std::endl;
+		else if ((charType - 48) < 255)
+			std::cout << "Char: " << charType << std::endl;
+		else
+			std::cout << "Char: Invalid" << std::endl;
+		std::cout << "Int: " << intType << std::endl;
+		std::cout << "Float: " << floatType << ".0f" << std::endl;
+		std::cout << "Double: " << doubleType << ".0" << std::endl;
+	}
+	if (type == 3)
+	{
+		charType = static_cast<char>(floatType);
+		intType = static_cast<int>(floatType);
+		doubleType = static_cast<double>(floatType);
+		if (!isprint(charType - 48))
+			std::cout << "Not a printable character" << std::endl;
+		else if ((charType - 48) < 255)
+			std::cout << "Char: " << charType << std::endl;
+		else
+			std::cout << "Char: Invalid" << std::endl;
+		std::cout << "Int: " << intType << std::endl;
+		std::cout << "Float: " << floatType << "f" << std::endl;
+		std::cout << "Double: " << doubleType << ".0" << std::endl;
+	}
+	if (type == 4)
+	{
+		charType = static_cast<char>(doubleType);
+		intType = static_cast<int>(doubleType);
+		floatType = static_cast<float>(doubleType);
+		if (!isprint(charType - 48))
+			std::cout << "Not a printable character" << std::endl;
+		else if ((charType - 48) < 255)
+			std::cout << "Char: " << charType << std::endl;
+		else
+			std::cout << "Char: Invalid" << std::endl;
+		std::cout << "Int: " << intType << std::endl;
+		std::cout << "Float: " << floatType << "f" << std::endl;
+		std::cout << "Double: " << doubleType << std::endl;
+	}
 }
 
 void Convert::checkForPseudoLiteral(void)
 {
-	if (literal.compare("nan") || literal.compare("nanf") || literal.compare("inf")\
-	||	literal.compare("inff") || literal.compare("-inf") || literal.compare("-inff"))
+	if (literal == "nan" || literal == "nanf" || literal == "inf"\
+	||	literal == "inff" || literal == "-inf" || literal == "-inff")
 		pseudoLiteral = true;
 }
 
