@@ -1,7 +1,5 @@
 #include "functions.hpp"
 
-/*It randomly instanciates A, B or C and returns the instance as a Base pointer. Feel free
-to use anything you like for the random choice implementation.*/
 Base *generate(void)
 {
     int res;
@@ -17,10 +15,20 @@ Base *generate(void)
         return p = new C;
 }
 
-/*It prints the actual type of the object pointed to by p: "A", "B" or "C".*/
 void identify(Base *p)
 {
+    A *a;
+    B *b;
+    C *c;
 
+    if (a = dynamic_cast<A *>(p))
+        std::cout << "A" << std::endl;
+    else if(b = dynamic_cast<B *>(p))
+        std::cout << "B" << std::endl;
+    else if (c = dynamic_cast<C *>(p))
+        std::cout << "C" << std::endl;
+    else
+        std::cout << "Unknown type" << std::endl;
 }
 
 /*It prints the actual type of the object pointed to by p: "A", "B" or "C". Using a pointer
