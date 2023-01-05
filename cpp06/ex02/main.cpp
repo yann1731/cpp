@@ -6,5 +6,6 @@ int main(void)
 
     p = generate();
     identify(p);
+    identify(*p);
     return 0;
 }

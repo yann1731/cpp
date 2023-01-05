@@ -21,12 +21,12 @@ void identify(Base *p)
     B *b;
     C *c;
 
-    if (a = dynamic_cast<A *>(p))
-        std::cout << "A" << std::endl;
-    else if(b = dynamic_cast<B *>(p))
-        std::cout << "B" << std::endl;
-    else if (c = dynamic_cast<C *>(p))
-        std::cout << "C" << std::endl;
+    if ((a = dynamic_cast<A *>(p)))
+        std::cout << "Type *: A" << std::endl;
+    else if((b = dynamic_cast<B *>(p)))
+        std::cout << "Type *: B" << std::endl;
+    else if ((c = dynamic_cast<C *>(p)))
+        std::cout << "Type *: C" << std::endl;
     else
         std::cout << "Unknown type" << std::endl;
 }
@@ -35,5 +35,31 @@ void identify(Base *p)
 inside this function is forbidden.*/
 void identify(Base &p)
 {
-
+    try
+    {
+        dynamic_cast<A&>(p);
+        std::cout << "Type ref: A" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        try
+        {
+            dynamic_cast<B&>(p);
+            std::cout << "Type ref: B" << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            try
+            {
+                dynamic_cast<C&>(p);
+                std::cout << "Type ref: C" << std::endl;
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << "Unknown type!" << std::endl;
+            }
+            
+        }
+    }
+    
 }

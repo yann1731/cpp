@@ -27,7 +27,7 @@ RM		=	rm -rf
 
 # Dir and file names
 NAME	=	castaway
-SRCS	=	main.cpp A.cpp B.cpp C.cpp
+SRCS	=	main.cpp Base.cpp A.cpp B.cpp C.cpp functions.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 INC		=	$(wildcard *.hpp)
 
