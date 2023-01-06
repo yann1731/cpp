@@ -5,7 +5,7 @@
 template <typename A, typename T, void (*F) (A)>
 void iter(A array, T len, void (*F) (A))
 {
-    
+                           
 }
 
 #endif
