@@ -20,5 +20,13 @@
 template <typename T>
 class Array
 {
-
+private:
+	T _e
+public:
+	Array();
+	Array(unsigned int n);
+	Array(const Array &rhs);
+	Array &operator=(const Array &rhs);
+	T &operator[](unsigned int index);
+	
 };
