@@ -21,12 +21,26 @@ template <typename T>
 class Array
 {
 private:
-	T _e
+	T *_e
+	size_t _size;
 public:
-	Array();
-	Array(unsigned int n);
-	Array(const Array &rhs);
-	Array &operator=(const Array &rhs);
-	T &operator[](unsigned int index);
-	
+	Array(): _size(0), _e(new T[0]) {};
+	Array(size_t n): _size(n), _e(new T[n]) {};
+	Array(const Array &rhs): _size(rhs._size), _e(new T[rhs._size])
+	{
+		for (size_t i = 0; i < rhs.size; i++)
+			_e[i] = rhs._e[i];
+	};
+	Array &operator=(const Array &rhs)
+	{
+
+	};
+	T &operator[](unsigned int index)
+	{
+
+	};
+	size_t size(void) const
+	{
+		return _size;
+	};
 };
