@@ -1,3 +1,4 @@
+#include <exception>
 // Develop a class template Array that contains elements of type T and that implements
 // the following behavior and functions:
 // •Construction with no parameter: Creates an empty array.
@@ -33,14 +34,28 @@ public:
 	};
 	Array &operator=(const Array &rhs)
 	{
-
+		for (size_t i = 0; i < rhs.size; i++)
+			_e[i] = rhs._e[i];
+		return *this;
 	};
 	T &operator[](unsigned int index)
 	{
-
+		if (index >= _size)
+		{
+			throw OutOfBoundException();
+		}
+		else
+			return _e[index];
 	};
 	size_t size(void) const
 	{
 		return _size;
+	};
+	class OutOfBoundException: public std::exception
+	{
+		const char *what() const throw()
+		{
+			return "Index used is out of bounds";
+		}
 	};
 };
