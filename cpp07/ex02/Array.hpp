@@ -21,11 +21,11 @@ public:
 	};
 	Array &operator=(const Array &rhs)
 	{
-		if (this != rhs)
+		if (this != &rhs)
 		{
 			_size = rhs._size;
 			delete [] this->_e;
-			this->_e = new T[rhs._size];
+			this->_e = new T[_size];
 			for (size_t i = 0; i < rhs._size; i++)
 				_e[i] = rhs._e[i];
 		}

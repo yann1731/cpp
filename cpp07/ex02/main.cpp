@@ -12,12 +12,17 @@ int main(void)
     string[4] = 'o';
 
     Array<char> strCopy = string;
+    Array<int> newArr;
+
 
     array[1] = 2;
     array[0] = 3;
+    
+    newArr = array;
 
     std::cout << array.size() << std::endl;
     std::cout << array[1] << " " << array[0] << std::endl;
+    std::cout << newArr[1] << " " << newArr[0] << std::endl;
     for (int i = 0; i < 5; i++)
     {
         std::cout << string[i];
