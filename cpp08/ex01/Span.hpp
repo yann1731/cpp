@@ -19,6 +19,7 @@ public:
     void addNumber(int n);
     int shortestSpan(void);
     int longestSpan(void);
+    void displayContent(void) const;
     class VectorFull: public std::exception
     {
         const char *what() const throw()

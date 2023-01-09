@@ -31,7 +31,7 @@ int Span::shortestSpan(void)
 {
     if (_vec.size() <= 1)
         throw ContainerTooSmall();
-    unsigned int smallest;
+    int smallest = 1000;
 
     for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); it++)
     {
@@ -39,8 +39,11 @@ int Span::shortestSpan(void)
         {
             if (it != it2)
             {
-                if (static_cast<unsigned int>(*it - *it2) < smallest)
-                    smallest = *it - *it2;
+                if (*it > *it2)
+                {
+                    if ((*it - *it2) < smallest)
+                        smallest = *it - *it2;
+                }
             }
         } 
     }
@@ -55,4 +58,14 @@ int Span::longestSpan(void)
 
     longest = *(std::max_element(_vec.begin(), _vec.end())) - *(std::min_element(_vec.begin(), _vec.end()));
     return longest;
+}
+
+void Span::displayContent(void) const
+{
+    int i = 0;
+    for (std::vector<int>::const_iterator it = _vec.begin(); it != _vec.end(); it++)
+    {
+        std::cout << _vec[i] << " ";
+        i++;
+    }
 }
