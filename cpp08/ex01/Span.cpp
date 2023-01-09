@@ -34,17 +34,17 @@ int Span::shortestSpan(void)
 {
     if (vec1.size() <= 1)
         throw ContainerTooSmall();
-    unsigned int smallest = 1000;
-    unsigned int tmp = 0;
+    unsigned int smallest;
 
     for (std::vector<int>::iterator it = vec1.begin(); it != vec1.end(); it++)
     {
         for (std::vector<int>::iterator it2 = vec1.begin(); it2 != vec1.end(); it2++)
         {
-            if (*it != *it2)
-                tmp = *it - *it2;
-            if (tmp < smallest)
-                smallest = tmp;
+            if (it != it2)
+            {
+                if (static_cast<unsigned int>(*it - *it2) < smallest)
+                    smallest = *it - *it2;
+            }
         } 
     }
     return smallest;
