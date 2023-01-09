@@ -5,6 +5,7 @@ int main(void)
     try
     {
         Span sp = Span(5);
+        Span newSp(5);
         sp.addNumber(6);
         sp.addNumber(3);
         sp.addNumber(17);
@@ -13,7 +14,10 @@ int main(void)
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
         Span newSpan(10);
+        newSp = sp;
         Span shitSpan(2);
+        std::cout << newSp.shortestSpan() << std::endl;
+        std::cout << newSp.longestSpan() << std::endl;
 
         shitSpan.addNumber(2);
         shitSpan.addNumber(4);

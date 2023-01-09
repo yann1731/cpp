@@ -9,7 +9,7 @@ class Span
 {
 private:
     size_t _n;
-    std::vector<int> vec1;
+    std::vector<int> _vec;
     Span();
 public:
     Span(unsigned int n);
