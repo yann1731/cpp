@@ -27,6 +27,7 @@ int main(void)
         std::cout << newSpan.longestSpan() << std::endl;
         std::cout << newSpan.shortestSpan() << std::endl;
         std::cout << shitSpan.longestSpan() << std::endl;
+        shitSpan.addNumber(6);
     }
     catch(const std::exception& e)
     {

@@ -10,10 +10,7 @@ Span::Span(const Span &rhs)
     std::copy(rhs.vec1.begin(), rhs.vec1.end(), this->vec1.begin());
 }
 
-Span::~Span()
-{
-
-}
+Span::~Span() {}
 
 Span &Span::operator=(const Span &rhs)
 {
@@ -24,7 +21,7 @@ Span &Span::operator=(const Span &rhs)
 
 void Span::addNumber(int n)
 {
-    if (vec1.size() > _n)
+    if (vec1.size() >= _n)
         throw VectorFull();
     else
         vec1.push_back(n);
