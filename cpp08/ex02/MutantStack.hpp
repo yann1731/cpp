@@ -5,27 +5,34 @@
 template <typename T>
 class MutantStack: public std::stack<T>
 {
-private:
 public:
+    MutantStack()
+    {
+    }
+
+    MutantStack(const MutantStack<T> &rhs)
+    {
+        *this = rhs;
+    }
+
+    ~MutantStack()
+    {
+    }
+
+    MutantStack &operator=(const MutantStack &rhs)
+    {
+        *this = rhs;
+        return *this;
+    }
     
-    class iterator
+    typedef typename std::stack<T>::container_type::iterator iterator;
+
+    iterator begin(void)
     {
-    private:
-    public:
-    };
-    class reverse_iterator
+        return this->c.begin();
+    }
+    iterator end(void)
     {
-    private:
-    public:
-    };
-    class const_iterator
-    {
-    private:
-    public:
-    };
-    class const_reverse_iterator
-    {
-    private:
-    public:
-    };
+        return this->c.end();
+    }
 };
