@@ -17,6 +17,7 @@ public:
     ~Span();
     Span &operator=(const Span &rhs);
     void addNumber(int n);
+    std::vector<int>::iterator &addNnumber(std::vector<int>::iterator &begin, std::vector<int>::iterator &end, std::vector<int>::iterator &it);
     int shortestSpan(void);
     int longestSpan(void);
     void displayContent(void) const;

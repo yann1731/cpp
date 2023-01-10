@@ -27,11 +27,16 @@ void Span::addNumber(int n)
         _vec.push_back(n);
 }
 
+std::vector<int>::iterator &addNnumber(std::vector<int>::iterator &begin, std::vector<int>::iterator &end, std::vector<int>::iterator &it)
+{
+    
+}
+
 int Span::shortestSpan(void)
 {
     if (_vec.size() <= 1)
         throw ContainerTooSmall();
-    int smallest = 1000;
+    int smallest = INT32_MAX;
 
     for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); it++)
     {
