@@ -29,7 +29,7 @@ void Span::addNumber(int n)
 
 std::vector<int>::iterator &addNnumber(std::vector<int>::iterator &begin, std::vector<int>::iterator &end, std::vector<int>::iterator &it)
 {
-    
+    for (it; it < end; )
 }
 
 int Span::shortestSpan(void)
