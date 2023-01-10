@@ -27,9 +27,12 @@ void Span::addNumber(int n)
         _vec.push_back(n);
 }
 
-std::vector<int>::iterator &addNnumber(std::vector<int>::iterator &begin, std::vector<int>::iterator &end, std::vector<int>::iterator &it)
+std::vector<int>::iterator &Span::addNnumber(std::vector<int>::iterator &begin, std::vector<int>::iterator &end, std::vector<int>::iterator &it)
 {
-    for (it; it < end; )
+    if (_vec.size() < std::distance(begin, end))
+        throw ContainerTooSmall();
+    it = _vec.insert(it, begin, end);
+    return (it);
 }
 
 int Span::shortestSpan(void)
