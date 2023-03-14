@@ -1,22 +1,8 @@
-#include "Dog.hpp"
-#include "Cat.hpp"
 
-int main()
+
+int main(void)
 {
-    Animal *animalFarm[8];
-
-	for (int i = 0; i < 8; i++)
-	{
-		if (i < 4)
-			animalFarm[i] = new Cat();
-		else
-			animalFarm[i] = new Dog();
-	}
-	animalFarm[0]->makeSound();
-	animalFarm[4]->makeSound();
-
-	for (int i = 0; i < 8; i++)
-		delete animalFarm[i];
-
-return 0;
+	
+	return 0;
 }
+
