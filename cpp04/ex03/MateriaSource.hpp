@@ -8,7 +8,7 @@ class MateriaSource: public IMateriaSource
 	// virtual void learnMateria(AMateria*) = 0;
 	// virtual AMateria* createMateria(std::string const & type) = 0;
 private:
-	Materia
+	AMateria* inventory[4];
 public:
 	MateriaSource();
 	~MateriaSource();
