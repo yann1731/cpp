@@ -10,20 +10,34 @@ Character::Character(const std::string& name) {
 	n_materias = 0;
 }
 
-
-Character::~Character() {
-	for (unsigned int i = 0; i < n_materias; i++) {
-		delete (materias + i);
+Character::Character(const Character& src) {
+	this->_name = src._name;
+	this->n_materias = src.n_materias;
+	for (unsigned int i = 0; i < src.n_materias; i++) {
+		this->materias[i] = src.materias[i];
 	}
 }
 
+
+Character::~Character() {
+	for (unsigned int i = 0; i < n_materias; i++) {
+		delete materias[i];
+	}
+}
+
+Character &Character::operator=(const Character& rhs) {
+	
+}
+
 void Character::equip(AMateria* m) {
-	materias + n_materias = m;
-	n_materias++;
+	if (n_materias < 4) {
+		materias[n_materias] = m;
+		n_materias++;
+	}
 }
 
 void Character::unequip(int idx) {
-
+	droppedMaterias
 }
 
 void Character::use(int idx, ICharacter& target) {
