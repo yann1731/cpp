@@ -4,7 +4,6 @@
 
 class MateriaSource: public IMateriaSource
 {
-	// virtual ~IMateriaSource() {}
 private:
 	AMateria* inventory[4];
 public:
