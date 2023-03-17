@@ -2,7 +2,7 @@
 # define CHARACTER_HPP
 # include "AMateria.hpp"
 
-class Character
+class Character: public ICharacter
 {
 private:
 	Character();
