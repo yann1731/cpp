@@ -19,9 +19,9 @@ public:
     {
     }
 
-    MutantStack &operator=(const MutantStack &rhs)
+    MutantStack &operator=(const MutantStack<T> &rhs)
     {
-        *this = rhs;
+        this->c = rhs.c;
         return *this;
     }
     
