@@ -7,10 +7,8 @@ class Character: public ICharacter
 private:
 	Character();
 	std::string _name;
-	AMateria* materias[4];
-	unsigned int n_materias;
+	AMateria* inventory[4];
 	AMateria* droppedMaterias[256];
-	unsigned int n_dropped_materias;
 public:
 	Character(const std::string& name);
 	Character(const Character& src);
