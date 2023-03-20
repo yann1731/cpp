@@ -6,7 +6,7 @@ WrongCat::WrongCat(): WrongAnimal()
 	std::cout << "Default wronganimal constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &src)
+WrongCat::WrongCat(const WrongCat &src): WrongAnimal(src)
 {
 	type = src.type;
 	std::cout << "Copy wronganimal constructor called" << std::endl;
@@ -14,10 +14,10 @@ WrongCat::WrongCat(const WrongCat &src)
 
 WrongCat::~WrongCat() {}
 
-void WrongCat::makeSound(void) const
-{
-	std::cout << "hello I'm a cat and I go quack quack" << std::endl;
-}
+// void WrongCat::makeSound(void) const
+// {
+// 	std::cout << "hello I'm a cat and I go quack quack" << std::endl;
+// }
 
 std::string WrongCat::getType(void) const
 {
