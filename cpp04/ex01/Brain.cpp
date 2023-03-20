@@ -12,8 +12,7 @@ Brain::Brain()
 Brain::Brain(const Brain &src)
 {
 	std::cout << "Copy brain constructor called" << std::endl;
-	for (int i = 0; i < 100; i++)
-	{
+	for (int i = 0; i < 100; i++) {
 		ideas[i] = src.ideas[i];
 	}
 }

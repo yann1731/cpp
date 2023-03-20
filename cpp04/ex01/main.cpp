@@ -13,7 +13,7 @@ int main()
 			animalFarm[i] = new Dog();
 	}
 	animalFarm[0]->makeSound();
-	animalFarm[1]->makeSound();
+	animalFarm[7]->makeSound();
 
 	for (int i = 0; i < 8; i++)
 		delete animalFarm[i];
