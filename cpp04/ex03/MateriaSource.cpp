@@ -8,22 +8,27 @@ MateriaSource::MateriaSource() {
 
 MateriaSource::~MateriaSource() {
     for (unsigned int i = 0; i < 4; i++) {
-        if (inventory[i])
+        if (inventory[i]) {
             delete inventory[i];
+        }
     }
 }
 
 void MateriaSource::learnMateria(AMateria* mat) {
     for (unsigned int i = 0; i < 4; i++) {
-        if (!inventory[i])
-            inventory[i] = mat->clone();
+        if (!inventory[i]) {
+            inventory[i] = mat;
+            return ;
+        }
     }
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
 	for (unsigned int i = 0; i < 4; i++) {
-        if (inventory[i]->getType() == type) {
-            return inventory[i]->clone();
+        if (inventory[i]) {
+            if (inventory[i]->getType().compare(type) == 0) {
+                return inventory[i]->clone();
+            }
         }
     }
     return NULL;

@@ -3,7 +3,7 @@
 #include "AMateria.hpp"
 
 Ice::Ice() {
-	type = "Ice";
+	type = "ice";
 }
 
 Ice::~Ice() {}

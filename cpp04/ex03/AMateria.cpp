@@ -1,5 +1,7 @@
 #include "AMateria.hpp"
 
+AMateria::~AMateria() {}
+
 AMateria::AMateria() {
 	this->type = "A Type";
 }

@@ -3,7 +3,7 @@
 #include "AMateria.hpp"
 
 Cure::Cure() {
-	this->type = "Cure";
+	this->type = "cure";
 }
 
 Cure::~Cure() { }
