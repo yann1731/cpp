@@ -1,22 +1,23 @@
 #include "Character.hpp"
+#include "AMateria.hpp"
 
 Character::Character() {
 	_name = "RandomCharacter";
 	for (unsigned int i = 0; i < 4; i++) {
-		inventory[i] = nullptr;
+		inventory[i] = NULL;
 	}
 	for (unsigned int i = 0; i < 256; i++) {
-		droppedMaterias[i] = nullptr;
+		droppedMaterias[i] = NULL;
 	}
 }
 
 Character::Character(const std::string& name) {
 	_name = name;
 	for (unsigned int i = 0; i < 4; i++) {
-		inventory[i] = nullptr;
+		inventory[i] = NULL;
 	}
 	for (unsigned int i = 0; i < 256; i++) {
-		droppedMaterias[i] = nullptr;
+		droppedMaterias[i] = NULL;
 	}
 }
 
@@ -41,11 +42,11 @@ Character::~Character() {
 
 Character &Character::operator=(const Character& rhs) {
 	for (unsigned int i = 0; i < 4; i++) {
-
+		
 	}
 }
 
-void Character::equip(AMateria* m) {
+void Character::equip(AMateria *m) {
 	for (unsigned int i = 0; i < 4; i++) {
 		if (!inventory[i]) {
 			inventory[i] = m;

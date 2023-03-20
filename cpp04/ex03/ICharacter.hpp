@@ -1,6 +1,9 @@
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
-# include "AMateria.hpp"
+#pragma once
+// #ifndef ICHARACTER_HPP
+// # define ICHARACTER_HPP
+#include <string>
+
+class AMateria;
 
 class ICharacter
 {
@@ -12,4 +15,4 @@ public:
 	virtual void use(int idx, ICharacter& target) = 0;
 };
 
-#endif
+// #endif
