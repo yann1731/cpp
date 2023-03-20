@@ -22,10 +22,7 @@ Character::Character(const std::string& name) {
 }
 
 Character::Character(const Character& src) {
-	this->_name = src._name;
-	for (unsigned int i = 0; i < 4; i++) {
-		this->inventory[i] = src.inventory[i];
-	}
+	*this = src;
 }
 
 
@@ -41,9 +38,15 @@ Character::~Character() {
 }
 
 Character &Character::operator=(const Character& rhs) {
+	this->_name = rhs._name;
 	for (unsigned int i = 0; i < 4; i++) {
-		
+		if (this->inventory[i])
+			delete this->inventory[i];
 	}
+	for (unsigned int i = 0; i < 4; i++) {
+		this->inventory[i] = rhs.inventory[i];
+	}
+	return *this;
 }
 
 void Character::equip(AMateria *m) {
@@ -56,16 +59,27 @@ void Character::equip(AMateria *m) {
 }
 
 void Character::unequip(int idx) {
-	if (idx < 0 || idx > 4) {
+	if (idx < 0 || idx > 3) {
 		return ;
 	}
-	
+	for (unsigned int i = 0; i < 256; i++) {
+		if (!droppedMaterias[i]) {
+			droppedMaterias[i] = inventory[idx];
+			inventory[idx] = NULL;
+			return ;
+		}
+	}
 }
 
 void Character::use(int idx, ICharacter& target) {
-
+	if (idx < 0 || idx > 3) {
+		return ;
+	}
+	else {
+		inventory[idx]->use(target);
+	}
 }
 
 std::string const &Character::getName(void) const {
-
+	return this->_name;
 }

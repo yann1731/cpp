@@ -1,8 +1,12 @@
 #include "Ice.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 Ice::Ice() {
 	type = "Ice";
 }
+
+Ice::~Ice() {}
 
 Ice *Ice::clone() const {
 	return (new Ice);

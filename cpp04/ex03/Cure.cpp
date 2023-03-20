@@ -1,8 +1,12 @@
 #include "Cure.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 Cure::Cure() {
 	this->type = "Cure";
 }
+
+Cure::~Cure() { }
 
 Cure *Cure::clone() const {
 	return (new Cure);

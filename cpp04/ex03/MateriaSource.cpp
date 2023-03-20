@@ -2,7 +2,7 @@
 
 MateriaSource::MateriaSource() {
     for (unsigned int i = 0; i < 4; i++) {
-        inventory[i] = nullptr;
+        inventory[i] = NULL;
     }
 }
 
@@ -26,4 +26,5 @@ AMateria* MateriaSource::createMateria(std::string const & type) {
             return inventory[i]->clone();
         }
     }
+    return NULL;
 }
