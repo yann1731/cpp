@@ -11,6 +11,7 @@ Dog::Dog(const Dog &dog): Animal(dog.type)
 {
 	std::cout << "Copy dog constructor called" << std::endl;
 	brain = new Brain;
+	this->brain = dog.brain;
 }
 
 Dog::~Dog()
@@ -21,7 +22,7 @@ Dog::~Dog()
 
 void Dog::makeSound(void) const
 {
-	std::cout << "fuck c++... I mean woof" << std::endl;
+	std::cout << "woof woof" << std::endl;
 }
 
 std::string Dog::getType(void) const
