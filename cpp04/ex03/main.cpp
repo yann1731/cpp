@@ -8,20 +8,33 @@ int main(void)
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-	std::cout << "Learn materia called" << std::endl;
 	ICharacter* me = new Character("me");
 	AMateria* tmp;
-	std::cout << "AMateria tmp declared" << std::endl;
 	tmp = src->createMateria("ice");
-	std::cout << "CreateMateria called" << std::endl;
 	me->equip(tmp);
-	std::cout << "me equipping tmp" << std::endl;
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	ICharacter* bob = new Character("bob");
-	ICharacter* bob2 = new Character;
+
+	Character newme = Character("newme");
+	Character newbob = Character("newbob");
+
+	tmp = src->createMateria("ice");
+	newbob.equip(tmp);
+	tmp = src->createMateria("cure");
+	newbob.equip(tmp);
+
+	newme = newbob;
+
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	std::cout << &newbob << std::endl;
+	std::cout << &newme << std::endl;
+
+	newbob.use(0, *me);
+	newbob.use(1, *me);
+	
 	delete bob;
 	delete me;
 	delete src;

@@ -27,6 +27,7 @@ Character::Character(const Character& src) {
 
 
 Character::~Character() {
+	std::cout << "Default character destructor called" << std::endl;
 	for (unsigned int i = 0; i < 4; i++) {
 		if (inventory[i])
 			delete inventory[i];
@@ -38,13 +39,17 @@ Character::~Character() {
 }
 
 Character &Character::operator=(const Character& rhs) {
+	std::cout << "Entered operator = overload" << std::endl;
 	this->_name = rhs._name;
 	for (unsigned int i = 0; i < 4; i++) {
 		if (this->inventory[i])
 			delete this->inventory[i];
 	}
 	for (unsigned int i = 0; i < 4; i++) {
-		this->inventory[i] = rhs.inventory[i];
+		if (rhs.inventory[i])
+			this->inventory[i] = rhs.inventory[i]->clone();
+		else
+			this->inventory[i] = NULL;
 	}
 	return *this;
 }
