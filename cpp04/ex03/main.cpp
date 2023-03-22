@@ -15,11 +15,28 @@ int main(void)
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	ICharacter* bob = new Character("bob");
+
+	Character *newme = new Character("newme");
+	Character *newbob = new Character("newbob");
+
+	tmp = src->createMateria("ice");
+	newbob->equip(tmp);
+	tmp = src->createMateria("cure");
+	newbob->equip(tmp);
+
+	*newme = *newbob;
+
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	newbob->use(0, *me);
+	newbob->use(1, *me);
+	
 	delete bob;
 	delete me;
 	delete src;
+	delete newbob;
+	delete newme;
 	return 0;
 }
 
