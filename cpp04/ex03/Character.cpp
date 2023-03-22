@@ -39,7 +39,6 @@ Character::~Character() {
 }
 
 Character &Character::operator=(const Character& rhs) {
-	std::cout << "Entered operator = overload" << std::endl;
 	this->_name = rhs._name;
 	for (unsigned int i = 0; i < 4; i++) {
 		if (this->inventory[i])

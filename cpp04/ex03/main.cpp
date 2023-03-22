@@ -16,28 +16,27 @@ int main(void)
 	me->equip(tmp);
 	ICharacter* bob = new Character("bob");
 
-	Character newme = Character("newme");
-	Character newbob = Character("newbob");
+	Character *newme = new Character("newme");
+	Character *newbob = new Character("newbob");
 
 	tmp = src->createMateria("ice");
-	newbob.equip(tmp);
+	newbob->equip(tmp);
 	tmp = src->createMateria("cure");
-	newbob.equip(tmp);
+	newbob->equip(tmp);
 
-	newme = newbob;
+	*newme = *newbob;
 
 	me->use(0, *bob);
 	me->use(1, *bob);
 
-	std::cout << &newbob << std::endl;
-	std::cout << &newme << std::endl;
-
-	newbob.use(0, *me);
-	newbob.use(1, *me);
+	newbob->use(0, *me);
+	newbob->use(1, *me);
 	
 	delete bob;
 	delete me;
 	delete src;
+	delete newbob;
+	delete newme;
 	return 0;
 }
 
