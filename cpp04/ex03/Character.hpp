@@ -5,11 +5,11 @@
 class Character: public ICharacter
 {
 private:
-	Character();
 	std::string _name;
 	AMateria* inventory[4];
 	AMateria* droppedMaterias[256];
 public:
+	Character();
 	Character(const std::string& name);
 	Character(const Character& src);
 	~Character();
