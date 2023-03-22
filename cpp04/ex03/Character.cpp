@@ -27,7 +27,6 @@ Character::Character(const Character& src) {
 
 
 Character::~Character() {
-	std::cout << "Default character destructor called" << std::endl;
 	for (unsigned int i = 0; i < 4; i++) {
 		if (inventory[i])
 			delete inventory[i];
@@ -60,6 +59,7 @@ void Character::equip(AMateria *m) {
 			return ;
 		}
 	}
+	delete m;
 }
 
 void Character::unequip(int idx) {
@@ -80,7 +80,8 @@ void Character::use(int idx, ICharacter& target) {
 		return ;
 	}
 	else {
-		inventory[idx]->use(target);
+		if (inventory[idx])
+			inventory[idx]->use(target);
 	}
 }
 
