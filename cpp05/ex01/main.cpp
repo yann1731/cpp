@@ -1,60 +1,79 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-using std::cout;
-using std::endl;
 int main(void)
 {
     try
     {
-        Bureaucrat randomBureaucrat;
-        Bureaucrat marvin("Marvin the miserable", 34);
-        Bureaucrat numberOne("Number one", 1);
-        Bureaucrat b = marvin;
+        Bureaucrat random;
         Form form("Robotomy form", 30, 30);
-        Form form2 = form;
-
-        cout << form2 << endl;
-        cout << b << endl;
-        try
-        {
-            b.promote(); 
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
-        
-        cout << b.getGrade() << endl;
-        cout << marvin.getGrade() << endl;
-        cout << marvin << endl;
-        cout << randomBureaucrat << endl;
-        cout << numberOne << endl;
-        try
-        {
-            numberOne.promote();
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
-        try
-        {
-            randomBureaucrat.promote(); 
-            cout << randomBureaucrat << endl;
-            randomBureaucrat.demote();
-            randomBureaucrat.demote();
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
+        random.signForm(form);
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    
+
+    try
+    {
+        Bureaucrat chadMarvin("Marvin the miserable", 15);
+        Form form("Robotomy form", 30, 30);
+        chadMarvin.signForm(form);
+        chadMarvin.signForm(form);
+        std::cout << form.getSignStatus() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    try
+    {
+        Bureaucrat numberOne("Number one", 1);
+        Bureaucrat b("zZzZzZzZ", 10);
+
+        b = numberOne;
+
+        Form form("Shrubbery form", 40, 30);
+        Form form2 = form;
+
+        numberOne.signForm(form);
+        std::cout << form << std::endl;
+        std::cout << form2 << std::endl;
+
+        std::cout << numberOne << std::endl;
+        std::cout << b << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    try
+    {
+        Bureaucrat numberOne("Number one", 1);
+        Bureaucrat b("zZzZzZzZ", 10);
+
+        b = numberOne;
+
+        Form form("Shrubbery form", 40, 30);
+        Form form2 = form;
+
+        numberOne.signForm(form);
+        std::cout << form << std::endl;
+        std::cout << form2 << std::endl;
+
+        std::cout << numberOne << std::endl;
+        std::cout << b << std::endl;
+
+        b.demote();
+        b.promote();
+        b.promote();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
     return 0;
 }

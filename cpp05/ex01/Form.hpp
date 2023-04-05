@@ -21,11 +21,11 @@ public:
     bool getSignStatus(void) const;
     int getGradeSign(void) const;
     int getGradeExec(void) const;
-    class GradeTooLowException: std::exception
+    class GradeTooLowException: public std::exception
     {
         const char *what() const throw();
     };
-    class GradeTooHighException: std::exception
+    class GradeTooHighException: public std::exception
     {
         const char *what() const throw();
     };

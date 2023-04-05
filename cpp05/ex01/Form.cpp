@@ -3,12 +3,10 @@
 
 Form::Form(): name("Random Form"), isSigned(false), gradeSign(1), gradeExec(1)
 {
-    std::cout << "Default form constructor called" << std::endl;
 }
 
 Form::Form(const std::string &name, const int &gradeSign, const int &gradeExec): name(name), isSigned(false), gradeSign(gradeSign), gradeExec(gradeExec)
 {
-    std::cout << "Custom form constructor called" << std::endl;
     if (gradeSign <= 0 || gradeExec <= 0)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExec > 150)
@@ -17,7 +15,6 @@ Form::Form(const std::string &name, const int &gradeSign, const int &gradeExec):
 
 Form::Form(const Form &src): name(src.name), isSigned(false), gradeSign(src.gradeSign), gradeExec(src.gradeExec)
 {
-    std::cout << "Copy form constructor called" << std::endl;
     if (gradeSign <= 0 || gradeExec <= 0)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExec > 150)
@@ -26,7 +23,6 @@ Form::Form(const Form &src): name(src.name), isSigned(false), gradeSign(src.grad
 
 Form::~Form()
 {
-    std::cout << "Default form destructor called" << std::endl;
 }
 
 std::string Form::getName(void) const
@@ -51,18 +47,10 @@ int Form::getGradeExec(void) const
 
 void Form::beSigned(const Bureaucrat &src)
 {
-    if (isSigned == true)
-    {
-        std::cout << "Wtf this is already signed" << std::endl;
-        return ;
-    }
-    else if (src.getGrade() > gradeSign || src.getGrade() > gradeExec)
-    {
-        std::cout << "You're too noob to sign this. Get out plz" << std::endl;
-        return ;
-    }
+    if (src.getGrade() > gradeSign)
+        throw GradeTooLowException();
     else
-    isSigned = true;
+        isSigned = true;
 }
 
 Form &Form::operator=(const Form &src)
@@ -83,6 +71,7 @@ const char *Form::GradeTooHighException::what() const throw()
 
 std::ostream &operator<<(std::ostream &out, const Form &src)
 {
-    out << src.getName() << "\n" << src.getSignStatus() << "\n" << src.getGradeSign() << "\n" << src.getGradeExec();
+    out << src.getName() << "\n" << src.getSignStatus() << "\n" << src.getGradeSign() \
+    << "\n" << src.getGradeExec() << "\n" << src.getSignStatus();
     return out;
 }
