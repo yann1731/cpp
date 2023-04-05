@@ -2,6 +2,7 @@
 #define INTERN_HPP
 # include <iostream>
 # include "Form.hpp"
+# include <exception>
 
 class Intern
 {
@@ -12,6 +13,12 @@ public:
 	Form *makeShrubberyForm(const std::string &target);
 	Form *makeRobotomizeForm(const std::string &target);
 	Form *makePardonForm(const std::string &target);
+
+	class NotAValidForm: public std::exception {
+		const char* what() const throw() {
+			return "This is not a valid form!";
+		}
+	};
 };
 
 #endif

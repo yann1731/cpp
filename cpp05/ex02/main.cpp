@@ -21,8 +21,16 @@ int main(void)
         shrub.beSigned(chadMarvin);
         shrub.execute(chadMarvin);
 
-        arthur.beSigned(chadMarvin);
-        arthur.execute(chadMarvin);
+        try
+        {
+            arthur.beSigned(chadMarvin);
+            arthur.execute(bottomFeeder);  
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        
     }
     catch(const std::exception& e)
     {

@@ -1,25 +1,58 @@
-SRCS =	main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
+#------------------------------------------------------------------------------#
+#                                  GENERICS                                    #
+#------------------------------------------------------------------------------#
 
-OBJS =	${SRCS:.c=.o}
+# Special variables
+DEFAULT_GOAL: all
+.DELETE_ON_ERROR: $(NAME)
+.PHONY: all bonus clean fclean re
 
-FLAGS =	-Wall -Werror -Wextra
+# Hide calls
+export VERBOSE	=	TRUE
+ifeq ($(VERBOSE),TRUE)
+	HIDE =
+else
+	HIDE = @
+endif
 
-STD =	-std=c++98
 
-NAME =	form
+#------------------------------------------------------------------------------#
+#                                VARIABLES                                     #
+#------------------------------------------------------------------------------#
 
-CC =	c++
+# Compiler and flags
+CC		=	c++
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -I.
+RM		=	rm -rf
 
-.c.o:
-			${CC} ${STD} ${FLAGS} -c $< -o ${<:.c=.o}
+# Dir and file names
+NAME	=	bureaucrat
+SRCS	=	main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
+OBJS	=	$(SRCS:.cpp=.o)
+INC		=	$(wildcard *.hpp)
 
-${NAME}:	${OBJS}
-			@${CC} ${STD} ${FLAGS} ${OBJS} -o ${NAME}
 
-all:		${NAME}
+#------------------------------------------------------------------------------#
+#                                 TARGETS                                      #
+#------------------------------------------------------------------------------#
 
+all: $(NAME)
+
+# Generates output file
+$(NAME): $(OBJS)
+	$(HIDE)$(CC) $(CFLAGS) $(OBJS) -o $@
+
+# Compiles sources into objects
+.cpp.o: $(SRCS) $(INC)
+	$(HIDE)$(CC) $(CFLAGS) -c $< -o $@
+
+# Removes objects
 clean:
-			@${RM} ${NAME}
-re: fclean all
+	$(HIDE)$(RM) $(OBJS)
 
-.PHONY: all clean re
+# Removes objects and executables
+fclean: clean
+	$(HIDE)$(RM) $(NAME)
+
+# Removes objects and executables and remakes
+re: fclean all

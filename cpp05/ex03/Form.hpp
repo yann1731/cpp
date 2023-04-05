@@ -14,7 +14,7 @@ private:
 public:
     Form(const std::string &name, const int &gradeSign, const int &gradeExec);
     Form(const Form &src);
-    ~Form();
+    virtual ~Form();
     virtual void beSigned(const Bureaucrat &bureaucrat);
     void execute(Bureaucrat const & executor);
     virtual void order66(const Bureaucrat &executor) const = 0;

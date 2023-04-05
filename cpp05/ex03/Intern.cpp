@@ -3,13 +3,6 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-// Intern();
-// 	~Intern();
-// 	Form *makeForm(const std::string form, const std::string target);
-// 	Form *makeShrubberyForm(const std::string &target);
-// 	Form *makeRobotomizeForm(const std::string &target);
-// 	Form *makePardonForm(const std::string &target);
-
 Intern::Intern()
 {
 	std::cout << "Default Intern constructor called" << std::endl;
@@ -40,7 +33,7 @@ Form *Intern::makeForm(const std::string form, const std::string target)
 			return ((this->*dispatchForm) (target));
 		}
 	}
-	return (NULL);
+	throw NotAValidForm();
 }
 
 Form *Intern::makeShrubberyForm(const std::string &target)
