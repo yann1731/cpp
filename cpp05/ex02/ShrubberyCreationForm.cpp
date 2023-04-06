@@ -20,20 +20,25 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
+bool ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
-	std::string newTarget;
-	newTarget = target;
-	newTarget.append("_shrubbery");
-	std::ofstream file(newTarget.c_str());
-	file << "     *        *         *      " << std::endl;
-	file << "    ***      ***       ***     " << std::endl;
-	file << "   *****    *****     *****    " << std::endl;
-	file << "  *******  *******   *******   " << std::endl;
-	file << "     *        *         *      " << std::endl;
-	file << "     *        *         *      " << std::endl;
-	file << "     *        *         *      " << std::endl;
-	executor.executeForm(*this);
+	if (this->getSignStatus() == true && executor.getGrade() <= this->getGradeExec()) {
+		std::string newTarget;
+		newTarget = target;
+		newTarget.append("_shrubbery");
+		std::ofstream file(newTarget.c_str());
+		file << "     *        *         *      " << std::endl;
+		file << "    ***      ***       ***     " << std::endl;
+		file << "   *****    *****     *****    " << std::endl;
+		file << "  *******  *******   *******   " << std::endl;
+		file << "     *        *         *      " << std::endl;
+		file << "     *        *         *      " << std::endl;
+		file << "     *        *         *      " << std::endl;
+		return true;
+	}
+	else {
+		throw GradeTooLowException();
+	}
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src)

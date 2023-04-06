@@ -47,7 +47,17 @@ int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::executeForm(const Form &form) const
 {
-	std::cout << this->name << " executed " << form.getName() << std::endl;
+	bool status = false;
+	try
+	{
+		status = form.execute(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	if (status == true)
+		std::cout << this->name << " executed " << form.getName() << std::endl;
 }
 
 void Bureaucrat::promote(void)

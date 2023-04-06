@@ -11,7 +11,7 @@ public:
 	RobotomyRequestForm(const std::string &target);
 	RobotomyRequestForm(const RobotomyRequestForm &src);
 	~RobotomyRequestForm();
-	void execute(const Bureaucrat &executor) const;
+	bool execute(const Bureaucrat &executor) const;
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &src);
 };
 

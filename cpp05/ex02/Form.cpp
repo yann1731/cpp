@@ -25,17 +25,6 @@ Form::~Form()
 {
 }
 
-void Form::execute(const Bureaucrat &executor)
-{
-    if (isSigned == false)
-        throw Form::FormNotSigned();
-    else if (executor.getGrade() > gradeExec)
-        throw Form::GradeTooLowException();
-    else
-        execute(executor);
-}
-
-
 std::string Form::getName(void) const
 {
     return name;

@@ -12,7 +12,7 @@ public:
 	ShrubberyCreationForm(const std::string &target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &src);
 	~ShrubberyCreationForm();
-	void execute(const Bureaucrat &executor) const;
+	bool execute(const Bureaucrat &executor) const;
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &src);
 };
 
