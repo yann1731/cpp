@@ -5,26 +5,22 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(): Form("Shrubbery Creation Form", 145, 137)
 {
-	std::cout << "Default shrubbery constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target): Form("Shrubbery Creation Form", 145, 137)
 {
 	this->target = target;
-	std::cout << "Default shrubberycreationform contructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src): Form(src)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src): Form(src), target(src.target)
 {
-	std::cout << "Copy shrubberycreationform constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "Default shrubberycreationform destructor called" << std::endl;
 }
 
-void ShrubberyCreationForm::order66(const Bureaucrat &executor) const
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
 	std::string newTarget;
 	newTarget = target;

@@ -3,12 +3,10 @@
 
 Form::Form(): name("Random Form"), isSigned(false), gradeSign(1), gradeExec(1)
 {
-    std::cout << "Default form constructor called" << std::endl;
 }
 
 Form::Form(const std::string &name, const int &gradeSign, const int &gradeExec): name(name), isSigned(false), gradeSign(gradeSign), gradeExec(gradeExec)
 {
-    std::cout << "Custom form constructor called" << std::endl;
     if (gradeSign <= 0 || gradeExec <= 0)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExec > 150)
@@ -17,7 +15,6 @@ Form::Form(const std::string &name, const int &gradeSign, const int &gradeExec):
 
 Form::Form(const Form &src): name(src.name), isSigned(false), gradeSign(src.gradeSign), gradeExec(src.gradeExec)
 {
-    std::cout << "Copy form constructor called" << std::endl;
     if (gradeSign <= 0 || gradeExec <= 0)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExec > 150)
@@ -26,7 +23,6 @@ Form::Form(const Form &src): name(src.name), isSigned(false), gradeSign(src.grad
 
 Form::~Form()
 {
-    std::cout << "Default form destructor called" << std::endl;
 }
 
 void Form::execute(const Bureaucrat &executor)
@@ -36,7 +32,7 @@ void Form::execute(const Bureaucrat &executor)
     else if (executor.getGrade() > gradeExec)
         throw Form::GradeTooLowException();
     else
-        order66(executor);
+        execute(executor);
 }
 
 
@@ -62,17 +58,10 @@ int Form::getGradeExec(void) const
 
 void Form::beSigned(const Bureaucrat &src)
 {
-    if (isSigned == true)
-    {
-        std::cerr << "This form is already signed" << std::endl;
-        return ;
-    }
-    else if (src.getGrade() > gradeSign || src.getGrade() > gradeExec)
-    {
-        std::cerr << src << " could not sign because grade is too low" << std::endl;
-    }
+    if (src.getGrade() > gradeSign)
+        throw GradeTooLowException();
     else
-    isSigned = true;
+        isSigned = true;
 }
 
 Form &Form::operator=(const Form &src)
@@ -98,6 +87,7 @@ const char *Form::FormNotSigned::what() const throw()
 
 std::ostream &operator<<(std::ostream &out, const Form &src)
 {
-    out << src.getName() << "\n" << src.getSignStatus() << "\n" << src.getGradeSign() << "\n" << src.getGradeExec();
+    out << src.getName() << "\n" << src.getSignStatus() << "\n" << src.getGradeSign() << "\n" << \
+    src.getGradeExec();
     return out;
 }

@@ -5,26 +5,22 @@
 
 PresidentialPardonForm::PresidentialPardonForm(): Form("Presidential Pardon Form", 25, 5)
 {
-	std::cout << "Default presidential pardon form constructor called" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target): Form("Presidential Pardon Form", 25, 5)
 {
 	this->target = target;
-	std::cout << "Target presidential pardon form constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src): Form(src)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src): Form(src), target(src.target)
 {
-	std::cout << "Copy presidential pardon form constructor called" << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "Default presidential pardon form destructor called" << std::endl;
 }
 
-void PresidentialPardonForm::order66(const Bureaucrat &executor) const
+void PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
 	std::cout << target << " has been pardoned by president Zaphod Beeblebrox." << std::endl;
 	executor.executeForm(*this); 

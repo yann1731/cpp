@@ -72,6 +72,6 @@ const char *Form::GradeTooHighException::what() const throw()
 std::ostream &operator<<(std::ostream &out, const Form &src)
 {
     out << src.getName() << "\n" << src.getSignStatus() << "\n" << src.getGradeSign() \
-    << "\n" << src.getGradeExec() << "\n" << src.getSignStatus();
+    << "\n" << src.getGradeExec();
     return out;
 }

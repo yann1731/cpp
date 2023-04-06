@@ -17,7 +17,7 @@ public:
     ~Form();
     virtual void beSigned(const Bureaucrat &bureaucrat);
     void execute(Bureaucrat const & executor);
-    virtual void order66(const Bureaucrat &executor) const = 0;
+    virtual void execute(const Bureaucrat &executor) const = 0;
     virtual Form &operator=(const Form &src);
     std::string getName(void) const;
     bool getSignStatus(void) const;
