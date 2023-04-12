@@ -15,25 +15,26 @@ Intern::~Intern()
 
 Form *Intern::makeForm(const std::string form, const std::string target)
 {
+	int opt = -1;
 	std::string funcs[] = {"shrubbery request", "robotomy request", "presidential pardon request"};
 
-	Form *(Intern::*getForm[]) (const std::string &target) =
-	{
-		&Intern::makeShrubberyForm,
-		&Intern::makeRobotomizeForm,
-		&Intern::makePardonForm
-	};
-
-	Form *funcPointer (const std::string &target);
-	for (int i = 0; i < 3; i++)
-	{
-		Form *(Intern::*dispatchForm) (const std::string &target) = getForm[i];
+	for (int i = 0; i < 3; i++) {
 		if (funcs[i] == form)
-		{
-			return ((this->*dispatchForm) (target));
-		}
+			opt = i;
 	}
-	throw NotAValidForm();
+	switch (opt) {
+		case (1):
+			return makeShrubberyForm(target);
+			break;
+		case (2):
+			return makeRobotomizeForm(target);
+			break;
+		case (3):
+			return makePardonForm(target);
+			break;
+		default:
+			throw NotAValidForm();
+	}
 }
 
 Form *Intern::makeShrubberyForm(const std::string &target)
