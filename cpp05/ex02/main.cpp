@@ -40,13 +40,24 @@ int main(void)
     
     try
     {
-        chadMarvin.signForm(arthur);
+        bottomFeeder.signForm(arthur);
         bottomFeeder.executeForm(arthur);  
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
+
+    try
+    {
+        chadMarvin.signForm(arthur);
+        chadMarvin.executeForm(arthur);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
         
     
     return 0;
