@@ -3,12 +3,10 @@
 
 Form::Form(): name("Random Form"), isSigned(false), gradeSign(1), gradeExec(1)
 {
-    std::cout << "Default form constructor called" << std::endl;
 }
 
 Form::Form(const std::string &name, const int &gradeSign, const int &gradeExec): name(name), isSigned(false), gradeSign(gradeSign), gradeExec(gradeExec)
 {
-    std::cout << "Custom form constructor called" << std::endl;
     if (gradeSign <= 0 || gradeExec <= 0)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExec > 150)
@@ -17,7 +15,6 @@ Form::Form(const std::string &name, const int &gradeSign, const int &gradeExec):
 
 Form::Form(const Form &src): name(src.name), isSigned(false), gradeSign(src.gradeSign), gradeExec(src.gradeExec)
 {
-    std::cout << "Copy form constructor called" << std::endl;
     if (gradeSign <= 0 || gradeExec <= 0)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExec > 150)
@@ -26,7 +23,6 @@ Form::Form(const Form &src): name(src.name), isSigned(false), gradeSign(src.grad
 
 Form::~Form()
 {
-    std::cout << "Default form destructor called" << std::endl;
 }
 
 void Form::execute(const Bureaucrat &executor)

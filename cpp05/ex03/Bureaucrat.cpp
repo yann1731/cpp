@@ -3,7 +3,6 @@
 
 Bureaucrat::Bureaucrat(): name("Bug"), grade(150)
 {
-	std::cout << "They're bureaucrats Morty, I don't respect them! -Rick Sanchez" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade): name(name), grade(grade)
@@ -12,8 +11,6 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade): name(name), grade(gr
 		throw GradeTooLowException();
 	if (grade <= 0)
 		throw GradeTooHighException();
-	std::cout << "Custom bureaucrat constructor called" << std::endl;
-
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src): name(src.name), grade(src.grade)
@@ -22,12 +19,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src): name(src.name), grade(src.grade)
 		throw GradeTooLowException();
 	if (grade <= 0)
 		throw GradeTooHighException();
-	std::cout << "Copy bureaucrat constructor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Default bureaucrat destructor called" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)

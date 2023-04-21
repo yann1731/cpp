@@ -5,12 +5,10 @@
 
 Intern::Intern()
 {
-	std::cout << "Default Intern constructor called" << std::endl;
 }
 
 Intern::~Intern()
 {
-	std::cout << "Default Intern destructor called" << std::endl;
 }
 
 Form *Intern::makeForm(const std::string form, const std::string target)
@@ -22,14 +20,15 @@ Form *Intern::makeForm(const std::string form, const std::string target)
 		if (funcs[i] == form)
 			opt = i;
 	}
+	std::cout << "opt: " << opt << std::endl;
 	switch (opt) {
-		case (1):
+		case (0):
 			return makeShrubberyForm(target);
 			break;
-		case (2):
+		case (1):
 			return makeRobotomizeForm(target);
 			break;
-		case (3):
+		case (2):
 			return makePardonForm(target);
 			break;
 		default:
