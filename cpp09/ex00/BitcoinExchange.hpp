@@ -1,6 +1,7 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 # include <map>
+# include <unordered_map>
 # include <algorithm>
 # include <iostream>
 # include <exception>
