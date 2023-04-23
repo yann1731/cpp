@@ -24,13 +24,13 @@ private:
     unordered_map<string, float> _toComp;
     string _bufferInputFile;
     string _bufferData;
-
 public:
     BitcoinExchange(char **argv);
     BitcoinExchange(const BitcoinExchange& other);
     ~BitcoinExchange();
     BitcoinExchange& operator=(const BitcoinExchange& rhs);
-
+    void storeData(void);
+    void storeInput(void);
 private:
     class NumberTooLarge: public exception {
         const char* what() const throw();

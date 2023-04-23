@@ -11,6 +11,7 @@ BitcoinExchange::BitcoinExchange(char **argv) {
     if (file.fail())
         throw CouldNotOpenFile();
     std::getline(file, _bufferData, '\0');
+    file.close();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
@@ -28,6 +29,18 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
     this->_bufferData = rhs._bufferData;
     this->_bufferInputFile = rhs._bufferInputFile;
     return *this;
+}
+
+void BitcoinExchange::storeData(void) {
+    std::pair<string, string> newPair;
+
+    while (_bufferData.size() != 0) {
+        
+    }
+}
+
+void BitcoinExchange::storeInput(void) {
+
 }
 
 const char* BitcoinExchange::NumberTooLarge::what() const throw() {
