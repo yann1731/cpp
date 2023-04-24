@@ -229,8 +229,8 @@ void Convert::doPrint(void)
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << floatType << "f" << std::endl;
-		std::cout << "Double: " << doubleType << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << "Float: " << floatType << "f" << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << "Double: " << doubleType << std::endl;
 	}
 	if (type == 3)
 	{
@@ -244,8 +244,8 @@ void Convert::doPrint(void)
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << floatType << "f" << std::endl;
-		std::cout << "Double: " << doubleType << std::endl;
+		std::cout << "Float: " << std::showpoint << floatType << "f" << std::endl;
+		std::cout << "Double: " << std::showpoint << doubleType << std::endl;
 	}
 	if (type == 4)
 	{
@@ -259,8 +259,8 @@ void Convert::doPrint(void)
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << floatType << "f" << std::endl;
-		std::cout << "Double: " << doubleType << std::endl;
+		std::cout << "Float: " << std::showpoint << floatType << "f" << std::endl;
+		std::cout << "Double: " << std::showpoint << doubleType << std::endl;
 	}
 }
 
