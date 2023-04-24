@@ -205,9 +205,9 @@ void Convert::doPrint(void)
 		intType = static_cast<int>(charType);
 		floatType = static_cast<float>(charType);
 		doubleType = static_cast<double>(charType);
-		if (!isprint(charType - 48))
+		if (!isprint(charType))
 			std::cout << "char: Not a printable character" << std::endl;
-		else if ((charType - 48) < 255)
+		else if (charType <= 127)
 			std::cout << "Char: " << charType << std::endl;
 		else
 			std::cout << "Char: Invalid" << std::endl;
@@ -221,16 +221,16 @@ void Convert::doPrint(void)
 		doubleType = static_cast<double>(intType);
 		if (intType < 127) {
 			charType = static_cast<char>(intType);
-			if (!isprint(charType - 48))
+			if (!isprint(charType))
 				std::cout << "char: Not a printable character" << std::endl;
-			else if ((charType - 48) < 255)
+			else if (charType <= 127)
 				std::cout << "Char: " << charType << std::endl;
 		}
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		// std::cout << std::fixed << std::showpoint << "Float: " << floatType << "f" << std::endl;
-		// std::cout << std::fixed << std::showpoint << "Double: " << doubleType << std::endl;
+		std::cout << "Float: " << floatType << "f" << std::endl;
+		std::cout << "Double: " << doubleType << std::endl;
 	}
 	if (type == 3)
 	{
@@ -244,8 +244,8 @@ void Convert::doPrint(void)
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << std::fixed << std::showpoint << "Float: " << floatType << "f" << std::endl;
-		std::cout << std::fixed << std::showpoint << "Double: " << doubleType << std::endl;
+		std::cout << "Float: " << floatType << "f" << std::endl;
+		std::cout << "Double: " << doubleType << std::endl;
 	}
 	if (type == 4)
 	{
@@ -254,13 +254,13 @@ void Convert::doPrint(void)
 		floatType = static_cast<float>(doubleType);
 		if (!isprint(charType))
 			std::cout << "Not a printable character" << std::endl;
-		else if ((charType - 48) < 255)
+		else if (charType <= 127)
 			std::cout << "Char: " << charType << std::endl;
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << std::fixed << std::showpoint << "Float: " << floatType << "f" << std::endl;
-		std::cout << std::fixed << std::showpoint << "Double: " << doubleType << std::endl;
+		std::cout << "Float: " << floatType << "f" << std::endl;
+		std::cout << "Double: " << doubleType << std::endl;
 	}
 }
 
