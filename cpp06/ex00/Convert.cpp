@@ -42,16 +42,24 @@ void Convert::convertLiteral(void)
 void Convert::findType(void)
 {
 	checkForPseudoLiteral();
-	if (checkChar())
-		type = 1;
-	else if (checkInt())
-		type = 2;
-	else if (checkFloat())
-		type = 3;
-	else if (checkDouble())
-		type = 4;
-	else
-		type = 0;
+	if (pseudoLiteral == false) {
+		if (checkChar()) {
+			std::cout << "Entered type 1" << std::endl;
+			type = 1;
+		}
+		else if (checkInt()) {
+			std::cout << "Entered type 2" << std::endl;
+			type = 2;
+		}
+		else if (checkFloat()) {
+			std::cout << "Entered type 3" << std::endl;
+			type = 3;
+		}
+		else if (checkDouble()) {
+			std::cout << "Entered type 4" << std::endl;
+			type = 4;
+		}
+	}
 	if (type == 0 && pseudoLiteral == false)
 		throw BadInput();
 	else if (pseudoLiteral == true)
@@ -68,7 +76,7 @@ bool Convert::checkChar(void)
 	const char *ptr = literal.c_str();
 	if (literal.length() < 1 || literal.length() > 1)
 		return false;
-	if (isprint(ptr[0]))
+	if (isprint(ptr[0]) && !isdigit(ptr[0]))
 		return true;
 	return false;
 }
