@@ -27,7 +27,7 @@ RM		=	rm -rf
 
 # Dir and file names
 NAME	=	supercereal
-SRCS	=	main.cpp function.cpp
+SRCS	=	main.cpp function.cpp Data.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 INC		=	$(wildcard *.hpp)
 
