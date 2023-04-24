@@ -37,7 +37,7 @@ void identify(Base &p)
 {
     try
     {
-        dynamic_cast<A&>(p);
+        (void) dynamic_cast<A&>(p);
         std::cout << "Type ref: A" << std::endl;
     }
     catch(const std::exception& e)
