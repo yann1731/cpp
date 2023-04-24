@@ -51,7 +51,6 @@ void Convert::findType(void)
 			type = 3;
 		else if (checkDouble())
 			type = 4;
-
 	}
 	if (type == 0 && pseudoLiteral == false)
 		throw BadInput();
@@ -219,7 +218,7 @@ void Convert::doPrint(void)
 	{
 		floatType = static_cast<float>(intType);
 		doubleType = static_cast<double>(intType);
-		if (intType < 127) {
+		if (intType <= 127 && intType >= 0) {
 			charType = static_cast<char>(intType);
 			if (!isprint(charType))
 				std::cout << "char: Not a printable character" << std::endl;
@@ -234,13 +233,16 @@ void Convert::doPrint(void)
 	}
 	if (type == 3)
 	{
-		charType = static_cast<char>(floatType);
 		intType = static_cast<int>(floatType);
 		doubleType = static_cast<double>(floatType);
-		if (!isprint(charType))
-			std::cout << "char: Not a printable character" << std::endl;
-		else if (charType <= 127)
-			std::cout << "Char: " << charType << std::endl;
+		charType = static_cast<char>(floatType);
+		if (intType <= 127 && intType >= 0) {
+			charType = static_cast<char>(intType);
+			if (!isprint(charType))
+				std::cout << "char: Not a printable character" << std::endl;
+			else if (charType <= 127)
+				std::cout << "Char: " << charType << std::endl;
+		}
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
@@ -249,18 +251,20 @@ void Convert::doPrint(void)
 	}
 	if (type == 4)
 	{
-		charType = static_cast<char>(doubleType);
 		intType = static_cast<int>(doubleType);
 		floatType = static_cast<float>(doubleType);
-		if (!isprint(charType))
-			std::cout << "Not a printable character" << std::endl;
-		else if (charType <= 127)
-			std::cout << "Char: " << charType << std::endl;
+		if (intType <= 127 && intType >= 0) {
+			charType = static_cast<char>(intType);
+			if (!isprint(charType))
+				std::cout << "char: Not a printable character" << std::endl;
+			else if (charType <= 127)
+				std::cout << "Char: " << charType << std::endl;
+		}
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << std::showpoint << floatType << "f" << std::endl;
-		std::cout << "Double: " << std::showpoint << doubleType << std::endl;
+		std::cout << "Float: " << std::showpoint << std::setprecision(1) << floatType << "f" << std::endl;
+		std::cout << "Double: " << std::showpoint << std::setprecision(1) << doubleType << std::endl;
 	}
 }
 
