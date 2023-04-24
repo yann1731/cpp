@@ -245,7 +245,12 @@ void Convert::doPrint(void)
 		}
 		else
 			std::cout << "Char: Invalid" << std::endl;
-		std::cout << "Int: " << intType << std::endl;
+		if (intType == INT_MIN) {
+			std::cout << "Int: invalid" << std::endl;
+		}
+		else {
+			std::cout << "Int: " << intType << std::endl;
+		}
 		std::cout << "Float: " << std::showpoint << floatType << "f" << std::endl;
 		std::cout << "Double: " << std::showpoint << doubleType << std::endl;
 	}
@@ -262,9 +267,12 @@ void Convert::doPrint(void)
 		}
 		else
 			std::cout << "Char: Invalid" << std::endl;
-		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << std::showpoint << std::setprecision(1) << floatType << "f" << std::endl;
-		std::cout << "Double: " << std::showpoint << std::setprecision(1) << doubleType << std::endl;
+		if (intType == INT_MIN && doubleType != INT_MIN)
+			std::cout << "Int: invalid" << std::endl;
+		else
+			std::cout << "Int: " << intType << std::endl;
+		std::cout << "Float: " << std::showpoint << floatType << "f" << std::endl;
+		std::cout << "Double: " << std::showpoint << doubleType << std::endl;
 	}
 }
 
