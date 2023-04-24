@@ -1,5 +1,6 @@
 #ifndef DATA_HPP
 #define DATA_HPP
+# include <iostream>
 
 struct Data
 {
@@ -12,5 +13,7 @@ struct Data
 	int hp;
 	int mp;
 };
+
+std::ostream& operator<<(std::ostream& out, const Data& rhs);
 
 #endif
