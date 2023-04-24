@@ -43,22 +43,15 @@ void Convert::findType(void)
 {
 	checkForPseudoLiteral();
 	if (pseudoLiteral == false) {
-		if (checkChar()) {
-			std::cout << "Entered type 1" << std::endl;
+		if (checkChar())
 			type = 1;
-		}
-		else if (checkInt()) {
-			std::cout << "Entered type 2" << std::endl;
+		else if (checkInt())
 			type = 2;
-		}
-		else if (checkFloat()) {
-			std::cout << "Entered type 3" << std::endl;
+		else if (checkFloat())
 			type = 3;
-		}
-		else if (checkDouble()) {
-			std::cout << "Entered type 4" << std::endl;
+		else if (checkDouble())
 			type = 4;
-		}
+
 	}
 	if (type == 0 && pseudoLiteral == false)
 		throw BadInput();
@@ -213,7 +206,7 @@ void Convert::doPrint(void)
 		floatType = static_cast<float>(charType);
 		doubleType = static_cast<double>(charType);
 		if (!isprint(charType - 48))
-			std::cout << "Not a printable character" << std::endl;
+			std::cout << "char: Not a printable character" << std::endl;
 		else if ((charType - 48) < 255)
 			std::cout << "Char: " << charType << std::endl;
 		else
@@ -224,48 +217,50 @@ void Convert::doPrint(void)
 	}
 	if (type == 2)
 	{
-		charType = static_cast<char>(intType);
 		floatType = static_cast<float>(intType);
 		doubleType = static_cast<double>(intType);
-		if (!isprint(charType - 48))
-			std::cout << "Not a printable character" << std::endl;
-		else if ((charType - 48) < 255)
-			std::cout << "Char: " << charType << std::endl;
+		if (intType < 127) {
+			charType = static_cast<char>(intType);
+			if (!isprint(charType - 48))
+				std::cout << "char: Not a printable character" << std::endl;
+			else if ((charType - 48) < 255)
+				std::cout << "Char: " << charType << std::endl;
+		}
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << floatType << ".0f" << std::endl;
-		std::cout << "Double: " << doubleType << ".0" << std::endl;
+		// std::cout << std::fixed << std::showpoint << "Float: " << floatType << "f" << std::endl;
+		// std::cout << std::fixed << std::showpoint << "Double: " << doubleType << std::endl;
 	}
 	if (type == 3)
 	{
 		charType = static_cast<char>(floatType);
 		intType = static_cast<int>(floatType);
 		doubleType = static_cast<double>(floatType);
-		if (!isprint(charType - 48))
-			std::cout << "Not a printable character" << std::endl;
-		else if ((charType - 48) < 255)
+		if (!isprint(charType))
+			std::cout << "char: Not a printable character" << std::endl;
+		else if (charType <= 127)
 			std::cout << "Char: " << charType << std::endl;
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << floatType << "f" << std::endl;
-		std::cout << "Double: " << doubleType << ".0" << std::endl;
+		std::cout << std::fixed << std::showpoint << "Float: " << floatType << "f" << std::endl;
+		std::cout << std::fixed << std::showpoint << "Double: " << doubleType << std::endl;
 	}
 	if (type == 4)
 	{
 		charType = static_cast<char>(doubleType);
 		intType = static_cast<int>(doubleType);
 		floatType = static_cast<float>(doubleType);
-		if (!isprint(charType - 48))
+		if (!isprint(charType))
 			std::cout << "Not a printable character" << std::endl;
 		else if ((charType - 48) < 255)
 			std::cout << "Char: " << charType << std::endl;
 		else
 			std::cout << "Char: Invalid" << std::endl;
 		std::cout << "Int: " << intType << std::endl;
-		std::cout << "Float: " << floatType << "f" << std::endl;
-		std::cout << "Double: " << doubleType << std::endl;
+		std::cout << std::fixed << std::showpoint << "Float: " << floatType << "f" << std::endl;
+		std::cout << std::fixed << std::showpoint << "Double: " << doubleType << std::endl;
 	}
 }
 
