@@ -31,7 +31,7 @@ public:
     ~BitcoinExchange();
     BitcoinExchange& operator=(const BitcoinExchange& rhs);
     void storeData(void);
-    void storeInput(void);
+    void compareVal(void);
 private:
     class NumberTooLarge: public exception {
         const char* what() const throw();

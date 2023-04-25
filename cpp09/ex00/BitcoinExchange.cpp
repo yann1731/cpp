@@ -51,8 +51,16 @@ void BitcoinExchange::storeData(void) {
     }
 }
 
-void BitcoinExchange::storeInput(void) {
+void BitcoinExchange::compareVal(void) {
+    std::pair<string, float> compPair;
+    string date;
+    string val;
+    float convertedVal;
+    string newLine;
 
+    while (_bufferInputFile.size()) {
+        
+    }
 }
 
 const char* BitcoinExchange::NumberTooLarge::what() const throw() {

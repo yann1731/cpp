@@ -7,8 +7,8 @@ int main(int argc, char **argv)
 		try
 		{
 			BitcoinExchange btc(argv);
-			//btc.storeInput();
 			btc.storeData();
+			btc.compareVal();
 		}
 		catch(const std::exception& e)
 		{
