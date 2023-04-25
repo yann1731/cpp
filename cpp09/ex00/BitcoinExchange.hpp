@@ -22,7 +22,6 @@ class BitcoinExchange
 private:
     BitcoinExchange();
     map<string, float> _bitcoinRate;
-    unordered_map<string, float> _toComp;
     string _bufferInputFile;
     string _bufferData;
     void checkDate(std::string& date);

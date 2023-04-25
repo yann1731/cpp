@@ -16,7 +16,6 @@ BitcoinExchange::BitcoinExchange(char **argv) {
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
     this->_bitcoinRate = other._bitcoinRate;
-    this->_toComp = other._toComp;
     this->_bufferData = other._bufferData;
     this->_bufferInputFile = other._bufferInputFile;
 }
@@ -25,7 +24,6 @@ BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
     this->_bitcoinRate = rhs._bitcoinRate;
-    this->_toComp = rhs._toComp;
     this->_bufferData = rhs._bufferData;
     this->_bufferInputFile = rhs._bufferInputFile;
     return *this;
@@ -89,8 +87,8 @@ void BitcoinExchange::compareVal(void) {
 }
 
 void BitcoinExchange::checkDate(std::string& date) {
-    int year; // 2009-2022
-    int month;
+    int year; // 2009-2022, %4 to check for leap year
+    int month; //31 day months: 1-3-5-7-8-10-12, 30 day months: 4-6-9-11, 28 || 29: 02
     int day;
     string yearStr;
     string monthStr;
@@ -111,7 +109,9 @@ void BitcoinExchange::checkDate(std::string& date) {
         throw InvalidDate();
     if (year < 2009 || year > 2022)
         throw InvalidDate();
-    
+    if (month < 1 || month > 12)
+        throw InvalidDate();
+       
 }
 
 void BitcoinExchange::checkVal(std::string& val) {
