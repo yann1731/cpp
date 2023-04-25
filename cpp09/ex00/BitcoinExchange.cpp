@@ -52,15 +52,70 @@ void BitcoinExchange::storeData(void) {
 }
 
 void BitcoinExchange::compareVal(void) {
-    std::pair<string, float> compPair;
+    // std::pair<string, float> compPair;
     string date;
     string val;
-    float convertedVal;
+    // float convertedVal;
     string newLine;
-
     while (_bufferInputFile.size()) {
-        
+        newLine = _bufferInputFile.substr(0, _bufferInputFile.find('\n'));
+        _bufferInputFile = _bufferInputFile.substr(_bufferInputFile.find('\n') + 1);
+        while (newLine.find(" ") != string::npos) {
+            newLine.erase(newLine.find(" "), 1);
+        }
+            date = newLine.substr(0, newLine.find('|'));
+            val = newLine.substr(newLine.find('|') + 1);
+        try
+        {
+            checkDate(date);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << "=> " << newLine << '\n';
+            exit(1);
+        }
+        try
+        {
+            checkVal(val);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            exit(1);
+        }
+        if (_bufferInputFile.find('\n') == string::npos)
+            break;
     }
+}
+
+void BitcoinExchange::checkDate(std::string& date) {
+    int year; // 2009-2022
+    int month;
+    int day;
+    string yearStr;
+    string monthStr;
+    string dayStr;
+    std::size_t firstDash = date.find('-');
+    std::size_t secondDash = date.rfind('-');
+
+    if (firstDash == string::npos || secondDash == string::npos || (firstDash == secondDash)) {
+        throw InvalidDate();
+    }
+    yearStr = date.substr(0, firstDash);
+    monthStr = date.substr(firstDash + 1, 2);
+    dayStr = date.substr(secondDash + 1, 2);
+    year = std::atoi(yearStr.c_str());
+    month = std::atoi(monthStr.c_str());
+    day = std::atoi(dayStr.c_str());
+    if (!year || !month || !day)
+        throw InvalidDate();
+    if (year < 2009 || year > 2022)
+        throw InvalidDate();
+    
+}
+
+void BitcoinExchange::checkVal(std::string& val) {
+    (void) val;
 }
 
 const char* BitcoinExchange::NumberTooLarge::what() const throw() {
@@ -68,7 +123,7 @@ const char* BitcoinExchange::NumberTooLarge::what() const throw() {
 }
 
 const char* BitcoinExchange::InvalidDate::what() const throw() {
-    return "Error: Date given is invalid";
+    return "Error: bad input";
 }
 
 const char* BitcoinExchange::NegativeNumber::what() const throw() {

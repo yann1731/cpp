@@ -25,6 +25,8 @@ private:
     unordered_map<string, float> _toComp;
     string _bufferInputFile;
     string _bufferData;
+    void checkDate(std::string& date);
+    void checkVal(std::string& val);
 public:
     BitcoinExchange(char **argv);
     BitcoinExchange(const BitcoinExchange& other);
