@@ -37,13 +37,17 @@ void BitcoinExchange::storeData(void) {
     string rate;
     std::size_t comma;
     std::size_t nl;
+    float convertedRate;
 
+    _bufferData = _bufferData.substr(_bufferData.find('\n') + 1); //to skip the first line of the .csv file
     while (_bufferData.size() != 0) {
         comma = _bufferData.find(',');
         nl = _bufferData.find('\n');
         date = _bufferData.substr(0, comma);
-        rate = _bufferData.substr(comma, nl - comma);
-        
+        rate = _bufferData.substr(comma + 1, nl - comma);
+        convertedRate = std::stof(rate);
+        _bitcoinRate.insert(std::make_pair(date, convertedRate));
+        _bufferData = _bufferData.substr(nl + 1);
     }
 }
 
