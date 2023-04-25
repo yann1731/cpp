@@ -33,8 +33,16 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 
 void BitcoinExchange::storeData(void) {
     std::pair<string, string> newPair;
+    string date;
+    string rate;
+    std::size_t comma;
+    std::size_t nl;
 
     while (_bufferData.size() != 0) {
+        comma = _bufferData.find(',');
+        nl = _bufferData.find('\n');
+        date = _bufferData.substr(0, comma);
+        rate = _bufferData.substr(comma, nl - comma);
         
     }
 }
