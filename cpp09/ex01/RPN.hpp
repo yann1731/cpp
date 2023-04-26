@@ -16,6 +16,8 @@ private:
     RPN(const RPN& other);
     RPN& operator=(const RPN& rhs);
     RPN();
+    void check(void);
+    void split(void);
 public:
     RPN(char **argv);
     ~RPN();
@@ -27,6 +29,9 @@ public:
         const char* what() const throw();
     };
     class InvalidOperation: public exception {
+        const char* what() const throw();
+    };
+    class InvalidCharacter: public exception {
         const char* what() const throw();
     };
 };
