@@ -50,10 +50,8 @@ void BitcoinExchange::storeData(void) {
 }
 
 void BitcoinExchange::compareVal(void) {
-    // std::pair<string, float> compPair;
     string date;
     string val;
-    // float convertedVal;
     string newLine;
     while (_bufferInputFile.size()) {
         newLine = _bufferInputFile.substr(0, _bufferInputFile.find('\n'));
@@ -89,7 +87,10 @@ void BitcoinExchange::compareVal(void) {
         }
         else {
             map<string, float>::iterator it = _bitcoinRate.lower_bound(date);
-             
+            if (it != _bitcoinRate.end())
+                cout << it->first << " => " << valueToMultiply << " = " << (valueToMultiply * it->second) << endl;
+            else
+                std::cerr << "Error: date is out of range => " << date << endl;
         }
         if (_bufferInputFile.find('\n') == string::npos)
             break;
