@@ -81,6 +81,15 @@ void BitcoinExchange::compareVal(void) {
             std::cerr << e.what() << '\n';
             exit(1);
         }
+        float valueToMultiply = std::atof(val.c_str());
+        std::size_t count = _bitcoinRate.count(date);
+        if (count == 1) {
+            float value = _bitcoinRate.at(date);  //2011-01-03 => 3 = 0.9
+            cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * value) << endl;
+        }
+        else {
+            
+        }
         if (_bufferInputFile.find('\n') == string::npos)
             break;
     }
@@ -107,15 +116,28 @@ void BitcoinExchange::checkDate(std::string& date) {
     day = std::atoi(dayStr.c_str());
     if (!year || !month || !day)
         throw InvalidDate();
-    if (year < 2009 || year > 2022)
-        throw InvalidDate();
     if (month < 1 || month > 12)
         throw InvalidDate();
-       
+    if (day < 1 || day > 31)
+        throw InvalidDate();
+    if (month == 2 && day > 29)
+        throw InvalidDate();
+    if (month == 2 && year % 4 != 0 && day == 29)
+        throw InvalidDate();
+    if (month == 4 || month == 6 || month == 9 || month == 11) {
+        if (day > 30)
+            throw InvalidDate();
+    }
 }
 
 void BitcoinExchange::checkVal(std::string& val) {
-    (void) val;
+    float convertedVal = std::atof(val.c_str());
+    if (!convertedVal)
+        throw BadValue();
+    if (convertedVal < 0.0f)
+        throw NumberTooSmall();
+    if (convertedVal > 1000.0f)
+        throw NumberTooLarge();
 }
 
 const char* BitcoinExchange::NumberTooLarge::what() const throw() {
@@ -134,3 +156,10 @@ const char* BitcoinExchange::CouldNotOpenFile::what() const throw() {
     return "Error: Could not open file";
 }
 
+const char* BitcoinExchange::BadValue::what() const throw() {
+    return "Error: could not convert value";
+}
+
+const char* BitcoinExchange::NumberTooSmall::what() const throw() {
+    return "Error: number too small";
+}

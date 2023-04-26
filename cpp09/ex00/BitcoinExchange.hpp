@@ -46,6 +46,12 @@ private:
     class CouldNotOpenFile: public exception {
         const char* what() const throw();
     };
+    class BadValue: public exception {
+        const char* what() const throw();
+    };
+    class NumberTooSmall: public exception {
+        const char* what() const throw();
+    };
 };
 
 #endif 
