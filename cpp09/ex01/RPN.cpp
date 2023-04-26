@@ -3,6 +3,7 @@
 RPN::RPN(char **argv) {
     _buffer = argv[1];
     this->check();
+    this->split();
 }
 
 RPN::~RPN() {
@@ -25,7 +26,6 @@ void RPN::check(void) {
         }
         if (start != string::npos && stop != string::npos) {
             tmp = _buffer.substr(start, stop - start);
-            cout << "tmp: " << tmp << endl;
             if (tmp.size() != 1)
                 throw NotAValidDigit();
             if (set.find(tmp[0]) == string::npos)
@@ -37,7 +37,29 @@ void RPN::check(void) {
 }
 
 void RPN::split(void) {
-
+    string tmp;
+    std::size_t start = string::npos;
+    std::size_t stop = string::npos;
+    for (string::reverse_iterator it = _buffer.rbegin(); it < _buffer.rend(); it++) {
+       // cout << *it;
+        if (!isspace(*it) && start == string::npos) {
+            start = it - _buffer.rbegin();
+            cout << "start: " << start << endl;
+        }
+        if ((isspace(*it) || it + 1 == _buffer.rend()) && start != string::npos) {
+            if (it + 1 == _buffer.rend())
+                stop = it + 1 - _buffer.rbegin();
+            else
+                stop = it - _buffer.rbegin();
+            cout << "stop: " << stop << endl;
+        }
+        if (start != string::npos && stop != string::npos) {
+            tmp = _buffer.substr(start, stop - start);
+            cout << "tmp: " << tmp << endl;
+            start = string::npos;
+            stop = string::npos;
+        }
+    }
 }
 
 const char* RPN::NotAValidDigit::what() const throw() {
