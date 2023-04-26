@@ -88,7 +88,8 @@ void BitcoinExchange::compareVal(void) {
             cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * value) << endl;
         }
         else {
-            
+            map<string, float>::iterator it = _bitcoinRate.lower_bound(date);
+             
         }
         if (_bufferInputFile.find('\n') == string::npos)
             break;
