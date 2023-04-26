@@ -134,8 +134,10 @@ void BitcoinExchange::checkDate(std::string& date) {
 
 void BitcoinExchange::checkVal(std::string& val) {
     float convertedVal = std::atof(val.c_str());
-    if (!convertedVal)
-        throw BadValue();
+    if (!convertedVal) {
+        if (val.size() != 1 || val[0] != '0')
+            throw BadValue();
+    }
     if (convertedVal < 0.0f)
         throw NumberTooSmall();
     if (convertedVal > 1000.0f)
