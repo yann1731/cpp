@@ -4,7 +4,6 @@ RPN::RPN(char **argv) {
     _buffer = argv[1];
     this->check();
     this->split();
-    // this->printStack();
     try
     {
         this->doMath();
@@ -43,58 +42,45 @@ void RPN::split(void) {
 }
 
 void RPN::doMath(void) {
-    string operands = "+-/*";
-    int val1 = -1;
-    int val2 = -1;
-    int result = -1;
-
-    while (_c.size() != 0) {
-        if (operands.find(_c.top()) != string::npos && val1 == -1 && val2 == -1) {
-            throw InvalidOperation();
-        }
-        if (_c.top() >= '0' && _c.top() <= '9' && val1 == -1) {
-            val1 = _c.top() - 48;
+    string operators = "+-/*";
+    stack<int> emptyStack;
+    int val1;
+    int val2;
+    int result;
+    while (_c.size()) {
+        if (operators.find(_c.top()) == string::npos) {
+            emptyStack.push(_c.top() - 48);
             _c.pop();
         }
-        if (_c.top() >= '0' && _c.top() <= '9' && val2 == -1) {
-            val2 = _c.top() - 48;
-            _c.pop();
-        }
-        if (val1 != -1 && val2 != -1) {
-            if (operands.find(_c.top()) == string::npos)
-                throw NotAValidOperand();
-            else {
-                switch(_c.top()) {
-                    case ('+'):
-                        result = val1 + val2;
-                        val1 = -1;
-                        val2 = -1;
-                        _c.pop();
-                        break;
-                    case ('-'):
-                        result = val1 - val2;
-                        val1 = -1;
-                        val2 = -1;
-                        _c.pop();
-                        break;
-                    case ('/'):
-                        result = val1 / val2;
-                        val1 = -1;
-                        val2 = -1;
-                        _c.pop();
-                        break;
-                    case ('*'):
-                        result = val1 * val2;
-                        val1 = -1;
-                        val2 = -1;
-                        _c.pop();
-                        break;
-                    default:
-                        throw InvalidOperation();
-                }
+        if (operators.find(_c.top()) != string::npos) {
+            if (emptyStack.size() < 2)
+                throw InvalidOperation();
+            val1 = emptyStack.top();
+            emptyStack.pop();
+            val2 = emptyStack.top();
+            emptyStack.pop();
+            switch(_c.top()) {
+                case('+'):
+                    result = val1 + val2;
+                    _c.pop();
+                    emptyStack.push(result);
+                    break;
+                case('-'):
+                    result = val1 - val2;
+                    _c.pop();
+                    emptyStack.push(result);
+                case('/'):
+                    result = val1 / val2;
+                    _c.pop();
+                    emptyStack.push(result);
+                case('*'):
+                    result = val1 * val2;
+                    _c.pop();
+                    emptyStack.push(result);
             }
         }
     }
+    result = emptyStack.top();
     cout << result << endl;
 }
 
