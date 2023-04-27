@@ -4,7 +4,15 @@ RPN::RPN(char **argv) {
     _buffer = argv[1];
     this->check();
     this->split();
-    this->checkStack();
+    // this->printStack();
+    try
+    {
+        this->doMath();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 RPN::~RPN() {
@@ -34,7 +42,63 @@ void RPN::split(void) {
     }
 }
 
-void RPN::checkStack(void) {
+void RPN::doMath(void) {
+    string operands = "+-/*";
+    int val1 = -1;
+    int val2 = -1;
+    int result = -1;
+
+    while (_c.size() != 0) {
+        if (operands.find(_c.top()) != string::npos && val1 == -1 && val2 == -1) {
+            throw InvalidOperation();
+        }
+        if (_c.top() >= '0' && _c.top() <= '9' && val1 == -1) {
+            val1 = _c.top() - 48;
+            _c.pop();
+        }
+        if (_c.top() >= '0' && _c.top() <= '9' && val2 == -1) {
+            val2 = _c.top() - 48;
+            _c.pop();
+        }
+        if (val1 != -1 && val2 != -1) {
+            if (operands.find(_c.top()) == string::npos)
+                throw NotAValidOperand();
+            else {
+                switch(_c.top()) {
+                    case ('+'):
+                        result = val1 + val2;
+                        val1 = -1;
+                        val2 = -1;
+                        _c.pop();
+                        break;
+                    case ('-'):
+                        result = val1 - val2;
+                        val1 = -1;
+                        val2 = -1;
+                        _c.pop();
+                        break;
+                    case ('/'):
+                        result = val1 / val2;
+                        val1 = -1;
+                        val2 = -1;
+                        _c.pop();
+                        break;
+                    case ('*'):
+                        result = val1 * val2;
+                        val1 = -1;
+                        val2 = -1;
+                        _c.pop();
+                        break;
+                    default:
+                        throw InvalidOperation();
+                }
+            }
+        }
+    }
+    cout << result << endl;
+}
+
+void RPN::printStack(void) {
     std::size_t count = _c.size();
     for (std::size_t i = 0; i < count; i++) {
         cout << _c.top() << endl;

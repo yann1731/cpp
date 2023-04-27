@@ -18,7 +18,8 @@ private:
     RPN();
     void check(void);
     void split(void);
-    void checkStack(void);
+    void doMath(void);
+    void printStack(void);
 public:
     RPN(char **argv);
     ~RPN();
