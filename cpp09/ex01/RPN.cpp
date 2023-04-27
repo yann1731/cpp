@@ -2,10 +2,10 @@
 
 RPN::RPN(char **argv) {
     _buffer = argv[1];
-    this->check();
-    this->split();
     try
     {
+        this->check();
+        this->split();
         this->doMath();
     }
     catch(const std::exception& e)
@@ -61,22 +61,25 @@ void RPN::doMath(void) {
             emptyStack.pop();
             switch(_c.top()) {
                 case('+'):
-                    result = val1 + val2;
+                    result = val2 + val1;
                     _c.pop();
                     emptyStack.push(result);
                     break;
                 case('-'):
-                    result = val1 - val2;
+                    result = val2 - val1;
                     _c.pop();
                     emptyStack.push(result);
+                    break;
                 case('/'):
-                    result = val1 / val2;
+                    result = val2 / val1;
                     _c.pop();
                     emptyStack.push(result);
+                    break;
                 case('*'):
-                    result = val1 * val2;
+                    result = val2 * val1;
                     _c.pop();
                     emptyStack.push(result);
+                    break;
             }
         }
     }
