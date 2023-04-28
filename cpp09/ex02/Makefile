@@ -27,7 +27,7 @@ RM		=	rm -rf
 
 # Dir and file names
 NAME	=	PmergeMe
-SRCS	=	main.cpp
+SRCS	=	main.cpp PmergeMe.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 INC		=	$(wildcard *.hpp)
 
