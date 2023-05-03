@@ -2,6 +2,7 @@
 # include <iostream>
 # include <exception>
 # include <fstream>
+# include <vector>
 
 
 using std::cerr;
@@ -9,6 +10,7 @@ using std::cout;
 using std::endl;
 using std::exception;
 using std::string;
+using std::vector;
 
 class PmergeMe {
 private:
@@ -16,7 +18,11 @@ private:
     PmergeMe(const PmergeMe& other);
     PmergeMe& operator=(const PmergeMe& rhs);
     string _buffer;
+    vector<string> _args;
+    vector<int> _sequence;
     void readToBuffer(char **argv);
+    void splitArgs(void);
+    void printArgs(void);
 public:
     PmergeMe(char **argv);
 
