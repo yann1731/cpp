@@ -33,8 +33,8 @@ void BitcoinExchange::storeData(void) {
     std::pair<string, string> newPair;
     string date;
     string rate;
-    std::size_t comma;
-    std::size_t nl;
+    size_t comma;
+    size_t nl;
     float convertedRate;
 
     _bufferData = _bufferData.substr(_bufferData.find('\n') + 1); //to skip the first line of the .csv file
@@ -80,7 +80,7 @@ void BitcoinExchange::compareVal(void) {
             exit(1);
         }
         float valueToMultiply = std::atof(val.c_str());
-        std::size_t count = _bitcoinRate.count(date);
+        size_t count = _bitcoinRate.count(date);
         if (count == 1) {
             float value = _bitcoinRate.at(date);  //2011-01-03 => 3 = 0.9
             cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * value) << endl;
@@ -104,8 +104,8 @@ void BitcoinExchange::checkDate(std::string& date) {
     string yearStr;
     string monthStr;
     string dayStr;
-    std::size_t firstDash = date.find('-');
-    std::size_t secondDash = date.rfind('-');
+    size_t firstDash = date.find('-');
+    size_t secondDash = date.rfind('-');
 
     if (firstDash == string::npos || secondDash == string::npos || (firstDash == secondDash)) {
         throw InvalidDate();

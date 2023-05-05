@@ -5,7 +5,6 @@ PmergeMe::PmergeMe(char **argv) {
     {
         this->readToBuffer(argv);
         this->splitArgs();
-        
     }
     catch(const std::exception& e)
     {
@@ -18,14 +17,24 @@ PmergeMe::~PmergeMe(void) {
 
 }
 
+void PmergeMe::splitIntoPairs(void) {
+    if (_sequence.size() % 2 == 0) {
+        for (size_t i = 0; i < (_sequence.size()/2); i + 2) {
+            _pairs.push_back(std::make_pair(_sequence[i], _sequence[i] + 1));
+        }
+    }
+    else {
+
+    }
+}
+
 void PmergeMe::readToBuffer(char **argv) {
     _buffer = argv[1];
-    
 }
 
 void PmergeMe::splitArgs(void) {
-	std::size_t start = string::npos;
-	std::size_t stop = string::npos;
+	size_t start = string::npos;
+	size_t stop = string::npos;
     int tmpInt;
     string tmpString;
 	for (string::iterator it = _buffer.begin(); it != _buffer.end(); it++) {
@@ -58,8 +67,23 @@ void PmergeMe::splitArgs(void) {
     }
 }
 
+// $> ./PmergeMe 3 5 9 7 4
+// Before: 3 5 9 7 4
+// After: 3 4 5 7 9
+// Time to process a range of 5 elements with std::[..] : 0.00031 us
+// Time to process a range of 5 elements with std::[..] : 0.00014 us
+// $> ./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+// Before: 141 79 526 321 [...]
+// After: 79 141 321 526 [...]
+// Time to process a range of 3000 elements with std::[..] : 62.14389 us
+// Time to process a range of 3000 elements with std::[..] : 69.27212 us
+
+void PmergeMe::displaySequence(void) {
+
+}
+
 void PmergeMe::printArgs(void) {
-    for (std::size_t i = 0; i < _args.size(); i++) {
+    for (size_t i = 0; i < _args.size(); i++) {
         cout << _args.at(i) << " ";
     }
     cout << endl;

@@ -4,13 +4,13 @@
 # include <fstream>
 # include <vector>
 
-
 using std::cerr;
 using std::cout;
 using std::endl;
 using std::exception;
 using std::string;
 using std::vector;
+using std::size_t;
 
 class PmergeMe {
 private:
@@ -20,9 +20,13 @@ private:
     string _buffer;
     vector<string> _args;
     vector<int> _sequence;
+    vector<std::pair<int, int> > _pairs;
     void readToBuffer(char **argv);
     void splitArgs(void);
     void printArgs(void);
+    void sort(void);
+    void splitIntoPairs(void);
+    void displaySequence(void);
 public:
     PmergeMe(char **argv);
 

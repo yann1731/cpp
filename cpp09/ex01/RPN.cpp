@@ -88,8 +88,8 @@ void RPN::doMath(void) {
 }
 
 void RPN::printStack(void) {
-    std::size_t count = _c.size();
-    for (std::size_t i = 0; i < count; i++) {
+    size_t count = _c.size();
+    for (size_t i = 0; i < count; i++) {
         cout << _c.top() << endl;
         _c.pop();
     }
