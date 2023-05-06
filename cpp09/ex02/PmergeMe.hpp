@@ -20,13 +20,17 @@ private:
     string _buffer;
     vector<string> _args;
     vector<int> _sequence;
+	int _orphan;
+	bool _even;
     vector<std::pair<int, int> > _pairs;
     void readToBuffer(char **argv);
-    void splitArgs(void);
-    void printArgs(void);
-    void sort(void);
-    void splitIntoPairs(void);
-    void displaySequence(void);
+    void splitArgs();
+    void printArgs();
+    void sort();
+    void splitIntoPairs();
+    void displaySequence();
+	void checkPair();
+	void displayPairs();
 public:
     PmergeMe(char **argv);
 

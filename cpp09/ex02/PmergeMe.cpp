@@ -5,6 +5,8 @@ PmergeMe::PmergeMe(char **argv) {
     {
         this->readToBuffer(argv);
         this->splitArgs();
+		this->splitIntoPairs();
+		this->displayPairs();
     }
     catch(const std::exception& e)
     {
@@ -13,26 +15,35 @@ PmergeMe::PmergeMe(char **argv) {
     }
 }
 
-PmergeMe::~PmergeMe(void) {
+PmergeMe::~PmergeMe() {
 
 }
 
-void PmergeMe::splitIntoPairs(void) {
+void PmergeMe::splitIntoPairs() {
     if (_sequence.size() % 2 == 0) {
-        for (size_t i = 0; i < (_sequence.size()/2); i + 2) {
-            _pairs.push_back(std::make_pair(_sequence[i], _sequence[i] + 1));
+        for (size_t i = 0; i < (_sequence.size()/2); i += 2) {
+            _pairs.push_back(std::make_pair(_sequence[i], _sequence[i + 1]));
         }
-    }
-    else {
+		_even = true;
+	}
+	else {
+		for (size_t i = 0; i < (_sequence.size()/2) - 1; i += 2) {
+			_pairs.push_back(std::make_pair(_sequence[i], _sequence[i + 1]));
+		}
+		_orphan = _sequence.back();
+		_even = false;
+	}
+}
 
-    }
+void PmergeMe::checkPair() {
+
 }
 
 void PmergeMe::readToBuffer(char **argv) {
     _buffer = argv[1];
 }
 
-void PmergeMe::splitArgs(void) {
+void PmergeMe::splitArgs() {
 	size_t start = string::npos;
 	size_t stop = string::npos;
     int tmpInt;
@@ -60,7 +71,7 @@ void PmergeMe::splitArgs(void) {
             tmpInt = atoi(tmpString.c_str());
             if (tmpInt != 0)
                 _sequence.push_back(tmpInt);
-            else if (tmpInt == 0 && tmpString.size() == 1 && tmpString[0] == '0')
+            else if (tmpString.size() == 1 && tmpString[0] == '0')
                 _sequence.push_back(tmpInt);
             else
                 tmpString.clear();
@@ -78,11 +89,24 @@ void PmergeMe::splitArgs(void) {
 // Time to process a range of 3000 elements with std::[..] : 62.14389 us
 // Time to process a range of 3000 elements with std::[..] : 69.27212 us
 
-void PmergeMe::displaySequence(void) {
-
+void PmergeMe::displaySequence() {
+	for (vector<int>::iterator it = _sequence.begin(); it != _sequence.end(); ++it) {
+		cout << *it << " ";
+	}
+	if (!_even)
+		cout << _orphan;
+	cout << endl;
 }
 
-void PmergeMe::printArgs(void) {
+void PmergeMe::displayPairs() {
+	for (size_t i = 0; i < _pairs.size(); i++) {
+		cout << _pairs[i].first << " " << _pairs[i].second << endl;
+	}
+	if (!_even)
+		cout << "Orphan: " << _orphan << endl;
+}
+
+void PmergeMe::printArgs() {
     for (size_t i = 0; i < _args.size(); i++) {
         cout << _args.at(i) << " ";
     }
