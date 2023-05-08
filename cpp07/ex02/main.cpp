@@ -2,42 +2,55 @@
 
 int main(void)
 {
-    Array<int> array(10);
-    Array<char> string(5);
+	try {
+		Array<int> array(10);
+		Array<char> string(5);
 
-    string[0] = 'H';
-    string[1] = 'e';
-    string[2] = 'l';
-    string[3] = 'l';
-    string[4] = 'o';
+		string[0] = 'H';
+		string[1] = 'e';
+		string[2] = 'l';
+		string[3] = 'l';
+		string[4] = 'o';
 
-    Array<char> strCopy = string;
-    Array<int> newArr;
+		Array<char> strCopy = string;
 
+		cout << "printing string" << endl;
+		for (size_t i = 0; i < string.size(); i++) {
+			cout << string[i];
+		}
+		cout << endl;
 
-    array[1] = 2;
-    array[0] = 3;
-    
-    newArr = array;
+		cout << "printing strCopy" << endl;
+		for (size_t i = 0; i < string.size(); i++) {
+			cout << strCopy[i];
+		}
+		cout << endl;
 
-    std::cout << array.size() << std::endl;
-    std::cout << array[1] << " " << array[0] << std::endl;
-    std::cout << newArr[1] << " " << newArr[0] << std::endl;
-    for (int i = 0; i < 5; i++)
-    {
-        std::cout << string[i];
-        if (i == 4)
-            std::cout << std::endl;
-    }
-    for (int i = 0; i < 5; i++)
-    {
-        std::cout << strCopy[i];
-        if (i == 4)
-            std::cout << std::endl;
-    }
+		string[0] = 'o';
+		string[1] = 'k';
+		string[2] = 'B';
+		string[3] = 'y';
+		string[4] = 'e';
+
+		cout << "printing strCopy after modifying string" << endl;
+		for (size_t i = 0; i < string.size(); i++) {
+			cout << strCopy[i];
+		}
+		cout << endl;
+
+		cout << "printing string after modif" << endl;
+		for (size_t i = 0; i < string.size(); i++) {
+			cout << string[i];
+		}
+		cout << endl;
+	}
+	catch (const std::exception& e) {
+		cerr << e.what() << endl;
+	}
 
     try
     {
+		Array<int> array(10);
         array[11];
     }
     catch(const std::exception& e)
@@ -46,4 +59,4 @@ int main(void)
     }
     
     return 0;
-};
+}
