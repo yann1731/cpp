@@ -2,19 +2,17 @@
 
 Span::Span() {}
 
-Span::Span(unsigned int n): _n(n) {}
+Span::Span(unsigned int n): _vec(n) {}
 
-Span::Span(const Span &rhs)
+Span::Span(const Span &other)
 {
-    _n = rhs._n;
-    _vec = rhs._vec;
+    _vec = other._vec;
 }
 
 Span::~Span() {}
 
 Span &Span::operator=(const Span &rhs)
 {
-    _n = rhs._n;
     _vec = rhs._vec;
     return *this;
 }

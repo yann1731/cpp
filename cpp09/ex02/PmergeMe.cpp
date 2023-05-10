@@ -21,13 +21,13 @@ PmergeMe::~PmergeMe() {
 
 void PmergeMe::splitIntoPairs() {
     if (_sequence.size() % 2 == 0) {
-        for (size_t i = 0; i < (_sequence.size()/2); i += 2) {
+        for (size_t i = 0; i < (_sequence.size()); i += 2) {
             _pairs.push_back(std::make_pair(_sequence[i], _sequence[i + 1]));
         }
 		_even = true;
 	}
 	else {
-		for (size_t i = 0; i < (_sequence.size()/2) - 1; i += 2) {
+		for (size_t i = 0; i < (_sequence.size()) - 1; i += 2) {
 			_pairs.push_back(std::make_pair(_sequence[i], _sequence[i + 1]));
 		}
 		_orphan = _sequence.back();

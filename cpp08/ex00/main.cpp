@@ -8,5 +8,12 @@ int main(void)
         vec1.push_back(i);
 
     easyfind<std::vector<int> >(vec1, 4);
+
+	try {
+		easyfind<std::vector<int> >(vec1, 65);
+	}
+	catch (const std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
     return 0;
 }

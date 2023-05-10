@@ -3,7 +3,10 @@
 int main(void)
 {
 	try {
-		Array<int> array(10);
+		const Array<int> array(10);
+
+		cout << "Value of array[0]: " << array[0] << endl;
+
 		Array<char> string(5);
 
 		string[0] = 'H';

@@ -5,24 +5,24 @@
 int main(void)
 {
     std::list<int> mstack;
-    mstack.push_back(5);
+    mstack.push_back(10);
     mstack.push_back(17);
-    std::cout << mstack.back() << std::endl;
+    std::cout << "value of last value in mstack: " << mstack.back() << std::endl;
+	cout << "Size of mstack before pop_back: " << mstack.size() << endl;
     mstack.pop_back();
-    std::cout << mstack.size() << std::endl;
+    std::cout << "size of mstack after pop_back: " << mstack.size() << std::endl;
     mstack.push_back(3);
     mstack.push_back(5);
     mstack.push_back(737);
     //[...]
-    mstack.push_back(0);
+    mstack.push_back(100);
     std::list<int>::iterator it = mstack.begin();
     std::list<int>::iterator ite = mstack.end();
-    ++it;
-    --it;
+	cout << "printing content of mstack using iterators" << endl;
     while (it != ite)
     {
-    std::cout << *it << std::endl;
-    ++it;
+    	std::cout << *it << std::endl;
+    	++it;
     }
     return 0;    
 }

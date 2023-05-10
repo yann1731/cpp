@@ -2,6 +2,10 @@
 #include <algorithm>
 #include <iostream>
 
+using std::cout;
+using std::endl;
+using std::cerr;
+
 template <typename T>
 class MutantStack: public std::stack<T>
 {
