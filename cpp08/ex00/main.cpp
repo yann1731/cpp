@@ -1,9 +1,10 @@
 #include "easyfind.hpp"
+#include <stack>
 
 int main(void)
 {
     std::vector<int> vec1;
-
+	
     for (int i = 0; i < 26; i++)
         vec1.push_back(i);
 
