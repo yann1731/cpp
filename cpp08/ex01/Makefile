@@ -40,11 +40,11 @@ all: $(NAME)
 
 # Generates output file
 $(NAME): $(OBJS)
-	$(HIDE)$(CC) $(CFLAGS) $(OBJS) -o $@
+	$(HIDE)$(CC) -g $(CFLAGS) $(OBJS) -o $@
 
 # Compiles sources into objects
 .cpp.o: $(SRCS) $(INC)
-	$(HIDE)$(CC) $(CFLAGS) -c $< -o $@
+	$(HIDE)$(CC) -g $(CFLAGS) -c $< -o $@
 
 # Removes objects
 clean:

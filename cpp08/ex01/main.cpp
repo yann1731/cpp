@@ -8,6 +8,7 @@ int main(void)
         Span newSp(5);
         Span shitSpan(2);
         sp.addNumber(6);
+        std::cerr << "Hello " << std::endl;
         sp.addNumber(1);
         sp.addNumber(17);
         sp.addNumber(10);
@@ -17,10 +18,10 @@ int main(void)
         std::cout << std::endl;
         newSp.displayContent();
         std::cout << std::endl;
-        std::cout << sp.shortestSpan() << std::endl;
-        std::cout << sp.longestSpan() << std::endl;
-        std::cout << newSp.shortestSpan() << std::endl;
-        std::cout << newSp.longestSpan() << std::endl;
+        std::cout << "sp shortestSpan: " << sp.shortestSpan() << std::endl;
+        std::cout << "sp longestSpan: " << sp.longestSpan() << std::endl;
+        std::cout << "newSp shortestSpan: " << newSp.shortestSpan() << std::endl;
+        std::cout << "newSp longestSpan" << newSp.longestSpan() << std::endl;
 
         Span newSpan(10);
         shitSpan.addNumber(2);
@@ -32,9 +33,9 @@ int main(void)
         {
             newSpan.addNumber(rand() % 100);
         }
-        std::cout << newSpan.longestSpan() << std::endl;
-        std::cout << newSpan.shortestSpan() << std::endl;
-        std::cout << shitSpan.longestSpan() << std::endl;
+        std::cout << "newSpan longestSpan: " << newSpan.longestSpan() << std::endl;
+        std::cout << "newSpan shortestSpan: " << newSpan.shortestSpan() << std::endl;
+        std::cout << "shitSpan longestSpan: " << shitSpan.longestSpan() << std::endl;
         Span bigSpan(10000);
         for (int i = 0; i < 10000; i++)
             bigSpan.addNumber(rand() % 10000000000);

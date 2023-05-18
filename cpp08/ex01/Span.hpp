@@ -7,9 +7,6 @@
 
 class Span
 {
-private:
-    std::vector<int> _vec;
-    Span();
 public:
     Span(unsigned int n);
     Span(const Span &rhs);
@@ -34,6 +31,10 @@ public:
             return "Exception: Container is too small";
         }
     };
+private:
+    std::vector<int> _vec;
+    unsigned int _n;
+    Span();
 };
 
 #endif
