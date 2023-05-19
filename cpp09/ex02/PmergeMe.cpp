@@ -18,9 +18,7 @@ PmergeMe::PmergeMe(char **argv, int argc) {
             }
         }
 		this->splitIntoPairs(_DPairs);
-        this->splitIntoPairs(_VPairs);
 		this->displayPairs(_DPairs);
-        this->displayPairs(_VPairs);
         this->mergeInsertSort(_DPairs);
         this->mergeInsertSort(_VPairs);
         this->merge(_VPairs);

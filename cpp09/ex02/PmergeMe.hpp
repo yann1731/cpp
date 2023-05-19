@@ -56,8 +56,9 @@ private:
     template <typename T>
     void displayPairs(const T &container) {
 	    for (size_t i = 0; i < container.size(); i++) {
-		    cout << container[i].first << " " << container[i].second << endl;
+		    cout << "[" << container[i].first << ", " << container[i].second << "]";
 	    }
+        cout << endl;
 	    if (!_even)
 		    cout << "Orphan: " << _orphan << endl;
     }
@@ -82,14 +83,16 @@ private:
     template <typename T>
     void merge(T &container) {
         if (container.size() == 0)
-            return ;
+            return;
         else {
             if (container.at(0).first >= container.at(0).second) {
-                _sortedSequence.push_back(container.at(0).first);
-                _leftOver.push_back(container.at(0).second);
+            vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), container.at(0).first);
+            _sortedSequence.insert(it, container.at(0).first);
+            _leftOver.push_back(container.at(0).second);
             }
             else {
-                _sortedSequence.push_back(container.at(0).second);
+                vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), container.at(0).second);
+                _sortedSequence.insert(it, container.at(0).second);
                 _leftOver.push_back(container.at(0).first);
             }
             container.erase(container.begin());
