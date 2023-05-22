@@ -81,7 +81,7 @@ private:
     }
 
     template <typename T>
-    void merge(T &container) {
+    void mergeSort(T &container) {
         if (container.size() == 0)
             return;
         else {
@@ -98,5 +98,10 @@ private:
             container.erase(container.begin());
             merge(container);
         }
+    }
+    
+    template<typename T>
+    void insertionSort(T &container) {
+
     }
 };
