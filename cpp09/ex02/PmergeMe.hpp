@@ -39,8 +39,6 @@ private:
     vector<int> _leftOver;
 	int _orphan;
 	bool _even;
-    long long _timeVector;
-    long long _timeDeque;
     vector<std::pair<int, int> > _VPairs;
     deque<std::pair<int, int> > _DPairs;
     

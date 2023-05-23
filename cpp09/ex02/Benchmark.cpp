@@ -19,3 +19,27 @@ long long Benchmark::timeStamp() {
     timeMs += (_stopTime.tv_usec - _startTime.tv_usec);
     return timeMs;
 }
+
+void Benchmark::setTimeVector(int timeMs) {
+    this->_timeVector = timeMs;
+}
+
+void Benchmark::setTimeDeque(int timeMs) {
+    this->_timeDeque = timeMs;
+}
+
+void Benchmark::setTimeDataManagement(int timeMs) {
+    this->_timeDataManagement = timeMs;
+}
+
+int Benchmark::getTimeVector() {
+    return _timeVector;
+}
+
+int Benchmark::getTimeDeque() {
+    return _timeDeque;
+}
+
+int Benchmark::getTimeDataManagement() {
+    return _timeDataManagement;
+}

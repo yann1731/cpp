@@ -3,6 +3,7 @@
 PmergeMe::PmergeMe(char **argv, int argc) {
     try
     {
+        benchmarkUtils.start();
         if (argc == 2) {
             this->readToBuffer(argv);
             this->splitArgs();
@@ -28,11 +29,13 @@ PmergeMe::PmergeMe(char **argv, int argc) {
                 }
             }
         }
+        benchmarkUtils.stop();
+        benchmarkUtils.setTimeDataManagement(benchmarkUtils.timeStamp());
         benchmarkUtils.start();
 		this->splitIntoPairs(_VPairs);
         this->mergeInsertSort(_VPairs);
         benchmarkUtils.stop();
-        _timeVector = benchmarkUtils.timeStamp();
+        benchmarkUtils.setTimeVector(benchmarkUtils.timeStamp());
         cout << "Before: ";
         for (size_t i = 0; i < _unsortedSequence.size(); ++i) {
             cout << _unsortedSequence[i] << " ";
@@ -55,9 +58,9 @@ PmergeMe::PmergeMe(char **argv, int argc) {
         this->splitIntoPairs(_DPairs);
         this->mergeInsertSort(_DPairs);
         benchmarkUtils.stop();
-        _timeDeque = benchmarkUtils.timeStamp();
-        cout << "Time to process std::deque: " << _timeDeque << " usecs" << endl;
-        cout << "Time to process std::vector: " << _timeVector << " usecs" << endl;
+        benchmarkUtils.setTimeDeque(benchmarkUtils.timeStamp());
+        cout << "Time to process std::deque: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeDeque()) << " usecs" << endl;
+        cout << "Time to process std::vector: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeVector()) << " usecs" << endl;
     }
     catch(const std::exception& e)
     {
