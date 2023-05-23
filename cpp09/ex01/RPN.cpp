@@ -52,6 +52,8 @@ void RPN::doMath(void) {
             emptyStack.push(_c.top() - 48);
             _c.pop();
         }
+        if (_c.size() == 0)
+            throw InvalidOperation();
         if (operators.find(_c.top()) != string::npos) {
             if (emptyStack.size() < 2)
                 throw InvalidOperation();
@@ -84,6 +86,8 @@ void RPN::doMath(void) {
         }
     }
     result = emptyStack.top();
+    if (emptyStack.size() > 1)
+        throw InvalidOperation();
     cout << result << endl;
 }
 
