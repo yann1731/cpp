@@ -1,12 +1,69 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(char **argv) {
+PmergeMe::PmergeMe(char **argv, int argc) {
     try
     {
-        this->readToBuffer(argv);
-        this->splitArgs();
-		this->splitIntoPairs();
-		this->displayPairs();
+        benchmarkUtils.start();
+        if (argc == 2) {
+            this->readToBuffer(argv);
+            this->splitArgs();
+        }
+        else {
+            int tmpInt;
+            for (int i = 1; i < argc; ++i) {
+                tmpInt = atoi(argv[i]);
+                if (tmpInt < 0) {
+                    cerr << "Error" << endl;
+                    exit(1);
+                }
+                else if (tmpInt > 0)
+                    _unsortedSequence.push_back(tmpInt);
+                else if (tmpInt == 0 && strlen(argv[i]) == 1 && argv[i][0] == '0') {
+                    cout << "Entered else if checking for 0" << endl;
+                    _unsortedSequence.push_back(tmpInt);
+                }
+                else {
+                    cerr << "Error" << endl;
+                    exit(1);
+                }
+            }
+        }
+        benchmarkUtils.stop();
+        benchmarkUtils.setTimeDataManagement(benchmarkUtils.timeStamp());
+        benchmarkUtils.start();
+		this->splitIntoPairs(_VPairs);
+        this->mergeInsertSort(_VPairs);
+        benchmarkUtils.stop();
+        benchmarkUtils.setTimeVector(benchmarkUtils.timeStamp());
+        cout << "Before: ";
+        for (size_t i = 0; i < _unsortedSequence.size(); ++i) {
+            cout << _unsortedSequence[i] << " ";
+            if (i == 5) {
+                cout << "[...]" << endl;
+                break ;
+            }
+        }
+        if (_unsortedSequence.size() <= 5)
+            cout << endl;
+        cout << "After: ";
+        for (size_t i = 0; i < _sortedSequence.size(); ++i) {
+            cout << _sortedSequence[i] << " ";
+            if (i == 5) {
+                cout << "[...]" << endl;
+                break ;
+            }
+        }
+        if (_unsortedSequence.size() <= 5)
+            cout << endl;
+        _sortedSequence.clear();
+        _leftOver.clear();
+        benchmarkUtils.start();
+        this->splitIntoPairs(_DPairs);
+        this->mergeInsertSort(_DPairs);
+        benchmarkUtils.stop();
+        benchmarkUtils.setTimeDeque(benchmarkUtils.timeStamp());
+        cout << "Time to process " << _unsortedSequence.size() << " elements in std::deque: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeDeque()) << " usecs" << endl;
+        cout << "Time to process " << _unsortedSequence.size() << " elements in std::vector: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeVector()) << " usecs" << endl;
     }
     catch(const std::exception& e)
     {
@@ -17,22 +74,6 @@ PmergeMe::PmergeMe(char **argv) {
 
 PmergeMe::~PmergeMe() {
 
-}
-
-void PmergeMe::splitIntoPairs() {
-    if (_sequence.size() % 2 == 0) {
-        for (size_t i = 0; i < (_sequence.size()); i += 2) {
-            _pairs.push_back(std::make_pair(_sequence[i], _sequence[i + 1]));
-        }
-		_even = true;
-	}
-	else {
-		for (size_t i = 0; i < (_sequence.size()) - 1; i += 2) {
-			_pairs.push_back(std::make_pair(_sequence[i], _sequence[i + 1]));
-		}
-		_orphan = _sequence.back();
-		_even = false;
-	}
 }
 
 void PmergeMe::checkPair() {
@@ -57,11 +98,13 @@ void PmergeMe::splitArgs() {
             tmpString = _buffer.substr(start, stop - start);
             tmpInt = atoi(tmpString.c_str());
             if (tmpInt > 0)
-                _sequence.push_back(tmpInt);
+                _unsortedSequence.push_back(tmpInt);
             else if (tmpInt == 0 && tmpString.size() == 1 && tmpString[0] == '0')
-                _sequence.push_back(tmpInt);
-            else
-                tmpString.clear();
+                _unsortedSequence.push_back(tmpInt);
+            else {
+                cerr << "Error" << endl;
+                exit(1);
+            }
 			start = string::npos;
 			stop = string::npos;
 		}
@@ -69,14 +112,28 @@ void PmergeMe::splitArgs() {
     if (start != string::npos) {
         tmpString = _buffer.substr(start, stop - start);
             tmpInt = atoi(tmpString.c_str());
-            if (tmpInt != 0)
-                _sequence.push_back(tmpInt);
+            if (tmpInt > 0)
+                _unsortedSequence.push_back(tmpInt);
             else if (tmpString.size() == 1 && tmpString[0] == '0')
-                _sequence.push_back(tmpInt);
-            else
-                tmpString.clear();
+                _unsortedSequence.push_back(tmpInt);
+            else {
+                cerr << "Error" << endl;
+                exit(1);
+            }
     }
 }
+
+void PmergeMe::insert() {
+        while (_leftOver.size() != 0) {
+            vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), _leftOver.at(0));
+            _sortedSequence.insert(it, _leftOver.at(0));
+            _leftOver.erase(_leftOver.begin());
+        }
+        if (_even == false) {
+            vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), _orphan);
+            _sortedSequence.insert(it, _orphan);
+        }
+    }
 
 // $> ./PmergeMe 3 5 9 7 4
 // Before: 3 5 9 7 4
@@ -91,20 +148,12 @@ void PmergeMe::splitArgs() {
 
 
 void PmergeMe::displaySequence() {
-	for (vector<int>::iterator it = _sequence.begin(); it != _sequence.end(); ++it) {
+	for (vector<int>::iterator it = _unsortedSequence.begin(); it != _unsortedSequence.end(); ++it) {
 		cout << *it << " ";
 	}
 	if (!_even)
 		cout << _orphan;
 	cout << endl;
-}
-
-void PmergeMe::displayPairs() {
-	for (size_t i = 0; i < _pairs.size(); i++) {
-		cout << _pairs[i].first << " " << _pairs[i].second << endl;
-	}
-	if (!_even)
-		cout << "Orphan: " << _orphan << endl;
 }
 
 void PmergeMe::printArgs() {
