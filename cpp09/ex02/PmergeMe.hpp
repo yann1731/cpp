@@ -4,6 +4,7 @@
 # include <fstream>
 # include <vector>
 # include <deque>
+# include "Benchmark.hpp"
 
 using std::cerr;
 using std::cout;
@@ -30,6 +31,7 @@ private:
     PmergeMe();
     PmergeMe(const PmergeMe& other);
     PmergeMe& operator=(const PmergeMe& rhs);
+    Benchmark benchmarkUtils;
     string _buffer;
     vector<string> _args;
     vector<int> _unsortedSequence;
@@ -37,6 +39,8 @@ private:
     vector<int> _leftOver;
 	int _orphan;
 	bool _even;
+    long long _timeVector;
+    long long _timeDeque;
     vector<std::pair<int, int> > _VPairs;
     deque<std::pair<int, int> > _DPairs;
     
@@ -50,7 +54,8 @@ private:
     // sorting
     template <typename T>
     void mergeInsertSort(T &container) {
-        (void) container;
+        merge(container);
+        insert();
     }
 
     template <typename T>
@@ -81,14 +86,14 @@ private:
     }
 
     template <typename T>
-    void mergeSort(T &container) {
+    void merge(T &container) {
         if (container.size() == 0)
             return;
         else {
             if (container.at(0).first >= container.at(0).second) {
-            vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), container.at(0).first);
-            _sortedSequence.insert(it, container.at(0).first);
-            _leftOver.push_back(container.at(0).second);
+                vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), container.at(0).first);
+                _sortedSequence.insert(it, container.at(0).first);
+                _leftOver.push_back(container.at(0).second);
             }
             else {
                 vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), container.at(0).second);
@@ -99,9 +104,6 @@ private:
             merge(container);
         }
     }
-    
-    template<typename T>
-    void insertionSort(T &container) {
 
-    }
+    void insert();
 };

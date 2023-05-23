@@ -11,27 +11,53 @@ PmergeMe::PmergeMe(char **argv, int argc) {
             int tmpInt;
             for (int i = 1; i < argc; ++i) {
                 tmpInt = atoi(argv[i]);
-            if (tmpInt > 0)
-                _unsortedSequence.push_back(tmpInt);
-            else if (tmpInt == 0 && strlen(argv[i]) == 1 && argv[i][0] == '0')
-                _unsortedSequence.push_back(tmpInt);
+                cout << "tmpInt == " << tmpInt << endl;
+                if (tmpInt < 0) {
+                    cerr << "Error" << endl;
+                    exit(1);
+                }
+                else if (tmpInt > 0)
+                    _unsortedSequence.push_back(tmpInt);
+                else if (tmpInt == 0 && strlen(argv[i]) == 1 && argv[i][0] == '0') {
+                    cout << "Entered else if checking for 0" << endl;
+                    _unsortedSequence.push_back(tmpInt);
+                }
+                else {
+                    cerr << "Error" << endl;
+                    exit(1);
+                }
             }
         }
-		this->splitIntoPairs(_DPairs);
-		this->displayPairs(_DPairs);
-        this->mergeInsertSort(_DPairs);
+        benchmarkUtils.start();
+		this->splitIntoPairs(_VPairs);
         this->mergeInsertSort(_VPairs);
-        this->merge(_VPairs);
-        cout << "Sorted sequence: ";
+        benchmarkUtils.stop();
+        _timeVector = benchmarkUtils.timeStamp();
+        cout << "Before: ";
+        for (size_t i = 0; i < _unsortedSequence.size(); ++i) {
+            cout << _unsortedSequence[i] << " ";
+            if (i == 5) {
+                cout << "[...]" << endl;
+                break ;
+            }
+        }
+        cout << "After: ";
         for (size_t i = 0; i < _sortedSequence.size(); ++i) {
-            cout << _sortedSequence.at(i) << " ";
+            cout << _sortedSequence[i] << " ";
+            if (i == 5) {
+                cout << "[...]" << endl;
+                break ;
+            }
         }
-        cout << std::endl;
-        cout << "leftOver: ";
-        for (size_t i = 0; i < _leftOver.size(); ++i) {
-            cout << _leftOver.at(i) << " ";
-        }
-        cout << std::endl;
+        _sortedSequence.clear();
+        _leftOver.clear();
+        benchmarkUtils.start();
+        this->splitIntoPairs(_DPairs);
+        this->mergeInsertSort(_DPairs);
+        benchmarkUtils.stop();
+        _timeDeque = benchmarkUtils.timeStamp();
+        cout << "Time to process std::deque: " << _timeDeque << " usecs" << endl;
+        cout << "Time to process std::vector: " << _timeVector << " usecs" << endl;
     }
     catch(const std::exception& e)
     {
@@ -69,8 +95,10 @@ void PmergeMe::splitArgs() {
                 _unsortedSequence.push_back(tmpInt);
             else if (tmpInt == 0 && tmpString.size() == 1 && tmpString[0] == '0')
                 _unsortedSequence.push_back(tmpInt);
-            else
-                tmpString.clear();
+            else {
+                cerr << "Error" << endl;
+                exit(1);
+            }
 			start = string::npos;
 			stop = string::npos;
 		}
@@ -78,14 +106,28 @@ void PmergeMe::splitArgs() {
     if (start != string::npos) {
         tmpString = _buffer.substr(start, stop - start);
             tmpInt = atoi(tmpString.c_str());
-            if (tmpInt != 0)
+            if (tmpInt > 0)
                 _unsortedSequence.push_back(tmpInt);
             else if (tmpString.size() == 1 && tmpString[0] == '0')
                 _unsortedSequence.push_back(tmpInt);
-            else
-                tmpString.clear();
+            else {
+                cerr << "Error" << endl;
+                exit(1);
+            }
     }
 }
+
+void PmergeMe::insert() {
+        while (_leftOver.size() != 0) {
+            vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), _leftOver.at(0));
+            _sortedSequence.insert(it, _leftOver.at(0));
+            _leftOver.erase(_leftOver.begin());
+        }
+        if (_even == false) {
+            vector<int>::iterator it = std::lower_bound(_sortedSequence.begin(), _sortedSequence.end(), _orphan);
+            _sortedSequence.insert(it, _orphan);
+        }
+    }
 
 // $> ./PmergeMe 3 5 9 7 4
 // Before: 3 5 9 7 4
