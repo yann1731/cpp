@@ -88,7 +88,7 @@ void BitcoinExchange::compareVal(void) {
         else {
             map<string, float>::iterator it = _bitcoinRate.lower_bound(date);
             if (it != _bitcoinRate.begin())
-                cout << (--it)->first << " => " << valueToMultiply << " = " << (valueToMultiply * it->second) << endl;
+                cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * it->second) << endl;
             else
                 std::cerr << "Error: date is out of range => " << date << endl;
         }
