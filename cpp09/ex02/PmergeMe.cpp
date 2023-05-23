@@ -19,7 +19,6 @@ PmergeMe::PmergeMe(char **argv, int argc) {
                 else if (tmpInt > 0)
                     _unsortedSequence.push_back(tmpInt);
                 else if (tmpInt == 0 && strlen(argv[i]) == 1 && argv[i][0] == '0') {
-                    cout << "Entered else if checking for 0" << endl;
                     _unsortedSequence.push_back(tmpInt);
                 }
                 else {
@@ -38,23 +37,13 @@ PmergeMe::PmergeMe(char **argv, int argc) {
         cout << "Before: ";
         for (size_t i = 0; i < _unsortedSequence.size(); ++i) {
             cout << _unsortedSequence[i] << " ";
-            if (i == 5) {
-                cout << "[...]" << endl;
-                break ;
-            }
         }
-        if (_unsortedSequence.size() <= 5)
-            cout << endl;
+        cout << endl;
         cout << "After: ";
         for (size_t i = 0; i < _sortedSequence.size(); ++i) {
             cout << _sortedSequence[i] << " ";
-            if (i == 5) {
-                cout << "[...]" << endl;
-                break ;
-            }
         }
-        if (_unsortedSequence.size() <= 5)
-            cout << endl;
+        cout << endl;
         _sortedSequence.clear();
         _leftOver.clear();
         benchmarkUtils.start();
