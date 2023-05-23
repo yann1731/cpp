@@ -12,7 +12,6 @@ PmergeMe::PmergeMe(char **argv, int argc) {
             int tmpInt;
             for (int i = 1; i < argc; ++i) {
                 tmpInt = atoi(argv[i]);
-                cout << "tmpInt == " << tmpInt << endl;
                 if (tmpInt < 0) {
                     cerr << "Error" << endl;
                     exit(1);
@@ -44,6 +43,8 @@ PmergeMe::PmergeMe(char **argv, int argc) {
                 break ;
             }
         }
+        if (_unsortedSequence.size() <= 5)
+            cout << endl;
         cout << "After: ";
         for (size_t i = 0; i < _sortedSequence.size(); ++i) {
             cout << _sortedSequence[i] << " ";
@@ -52,6 +53,8 @@ PmergeMe::PmergeMe(char **argv, int argc) {
                 break ;
             }
         }
+        if (_unsortedSequence.size() <= 5)
+            cout << endl;
         _sortedSequence.clear();
         _leftOver.clear();
         benchmarkUtils.start();
@@ -59,8 +62,8 @@ PmergeMe::PmergeMe(char **argv, int argc) {
         this->mergeInsertSort(_DPairs);
         benchmarkUtils.stop();
         benchmarkUtils.setTimeDeque(benchmarkUtils.timeStamp());
-        cout << "Time to process std::deque: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeDeque()) << " usecs" << endl;
-        cout << "Time to process std::vector: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeVector()) << " usecs" << endl;
+        cout << "Time to process " << _unsortedSequence.size() << " elements in std::deque: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeDeque()) << " usecs" << endl;
+        cout << "Time to process " << _unsortedSequence.size() << " elements in std::vector: " << (benchmarkUtils.getTimeDataManagement() + benchmarkUtils.getTimeVector()) << " usecs" << endl;
     }
     catch(const std::exception& e)
     {
