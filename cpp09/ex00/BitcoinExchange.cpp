@@ -64,33 +64,24 @@ void BitcoinExchange::compareVal(void) {
         try
         {
             checkDate(date);
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << "=> " << newLine << '\n';
-            exit(1);
-        }
-        try
-        {
             checkVal(val);
+            float valueToMultiply = std::atof(val.c_str());
+            size_t count = _bitcoinRate.count(date);
+            if (count == 1) {
+                float value = _bitcoinRate.at(date);  //2011-01-03 => 3 = 0.9
+                cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * value) << endl;
+            }
+            else {
+                map<string, float>::iterator it = _bitcoinRate.lower_bound(date);
+                if (it != _bitcoinRate.begin())
+                    cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * it->second) << endl;
+                else
+                    std::cerr << "Error: date is out of range => " << date << endl;
+            }
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
-            exit(1);
-        }
-        float valueToMultiply = std::atof(val.c_str());
-        size_t count = _bitcoinRate.count(date);
-        if (count == 1) {
-            float value = _bitcoinRate.at(date);  //2011-01-03 => 3 = 0.9
-            cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * value) << endl;
-        }
-        else {
-            map<string, float>::iterator it = _bitcoinRate.lower_bound(date);
-            if (it != _bitcoinRate.begin())
-                cout << date << " => " << valueToMultiply << " = " << (valueToMultiply * it->second) << endl;
-            else
-                std::cerr << "Error: date is out of range => " << date << endl;
+            std::cerr << e.what() << "=> " << val << '\n';
         }
         if (_bufferInputFile.find('\n') == string::npos)
             break;
